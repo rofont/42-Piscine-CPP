@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
+#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/25 12:20:13 by rofontai          #+#    #+#              #
-#    Updated: 2023/10/26 11:19:06 by rofontai         ###   ########.fr        #
+#    Updated: 2023/10/26 19:07:55 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ all	: $(NAME)
 
 $(OBJ_DIR)/%.o	: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "\n$GCompilation : $Z $(notdir $<)"$W
+	@echo "$GCompilation : $Z $(notdir $<)"$W
 
 $(NAME)	:  $(OBJ_DIR) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
