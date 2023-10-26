@@ -5,14 +5,14 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/25 12:20:13 by rofontai          #+#    #+#              #
-#    Updated: 2023/10/26 11:19:06 by rofontai         ###   ########.fr        #
+#    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
+#    Updated: 2023/10/26 11:44:06 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ARGUMENTS--------------------------------------------------------------------
 
-NAME	= megaphone
+NAME	= phonebook
 
 CC		= g++
 CFLAGS	= -Wall -Wextra -Werror -std=c++98
