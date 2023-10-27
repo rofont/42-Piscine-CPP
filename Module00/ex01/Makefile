@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
+#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2023/10/26 11:44:06 by rofontai         ###   ########.fr        #
+#    Updated: 2023/10/27 08:57:10 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ all	: $(NAME)
 
 $(OBJ_DIR)/%.o	: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "\n$GCompilation : $Z $(notdir $<)"$W
+	@echo "$GCompilation : $Z $(notdir $<)"$W
 
 $(NAME)	:  $(OBJ_DIR) $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
@@ -47,12 +47,12 @@ $(OBJ_DIR)	:
 	@mkdir -p $@
 
 clean	:
-	@echo $RClean$W
+	@echo "\n$RClean$W"
 	@rm -rf $(OBJ_DIR)
 
 fclean	: clean
 	@rm -rf $(NAME)
-	@echo $RFclean$W
+	@echo "$RFclean$W\n"
 
 re	: fclean all
 
