@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:44:50 by rofontai          #+#    #+#             */
-/*   Updated: 2023/10/27 15:48:53 by romain           ###   ########.fr       */
+/*   Updated: 2023/10/30 12:58:33 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int main (int ac, char **av)
 	string temp;
 	while (42)
 	{
+		if (cin.eof() || cin.fail())
+			exit (EXIT_FAILURE);
 		cout << "\nADD, SEARCH or EXIT" << endl;
 		cout << "> ";
 		std::getline(cin, temp);
@@ -30,8 +32,10 @@ int main (int ac, char **av)
 			book.search_contact();
 		else if (temp == "EXIT")
 			book.exit_exec();
+		else if (cin.eof() || cin.fail())
+			exit (EXIT_FAILURE);
 		else
-			cout << endl << RED "TRY AGAIN" WHT<< endl;
+			cout << endl << RED "Invalid command" WHT<< endl;
 	}
 	return 0;
 }

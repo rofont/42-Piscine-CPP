@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:44:21 by rofontai          #+#    #+#             */
-/*   Updated: 2023/10/27 13:58:32 by romain           ###   ########.fr       */
+/*   Updated: 2023/10/30 10:42:39 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,27 @@ void	Contact::set_secret(string secret)
 }
 
 // get fonctions
-void	Contact::get_first(void) const
+string	Contact::get_first(void) const
 {
-	cout <<GRE "first name: " WHT<< _first_name << endl;
+	return _first_name;
 }
 
-void	Contact::get_last(void) const
+string	Contact::get_last(void) const
 {
-	cout <<GRE "last name: " WHT<< _last_name << endl;
+	return _last_name;
 }
 
-void	Contact::get_nick(void) const
+string	Contact::get_nick(void) const
 {
-	cout <<GRE "nickname: " WHT<< _nickname << endl;
+	return _nickname;
 }
 
-void	Contact::get_phone(void) const
+string	Contact::get_phone(void) const
 {
-	cout <<GRE "phone number: " WHT<< _phone_number << endl;
+	return _phone_number;
 }
 
-void	Contact::get_secret(void) const
+string	Contact::get_secret(void) const
 {
-	cout <<GRE "darkset secret: " WHT<< _darkest_secret << endl;
+	return _darkest_secret;
 }
