@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:44:50 by rofontai          #+#    #+#             */
-/*   Updated: 2023/10/30 12:58:33 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/01 09:16:21 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ int main (int ac, char **av)
 	PhoneBook book;
 
 	string temp;
+	cout << "Welcome in my PhoneBook";
 	while (42)
 	{
 		if (cin.eof() || cin.fail())
 			exit (EXIT_FAILURE);
-		cout << "\nADD, SEARCH or EXIT" << endl;
+		cout << endl << "ADD, SEARCH or EXIT" << endl;
 		cout << "> ";
 		std::getline(cin, temp);
 		if (temp == "ADD")
@@ -35,7 +36,7 @@ int main (int ac, char **av)
 		else if (cin.eof() || cin.fail())
 			exit (EXIT_FAILURE);
 		else
-			cout << endl << RED "Invalid command" WHT<< endl;
+			cout << RED "Invalid command" WHT<< endl;
 	}
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 11:44:28 by rofontai          #+#    #+#             */
-/*   Updated: 2023/10/30 15:42:10 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/01 09:16:51 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,27 @@ void	PhoneBook::add_contact(void)
 		exit (EXIT_FAILURE);
 	if (_index == 8)
 		_index = 0;
-	cout <<GRE " First name: " WHT;
+	cout <<GRE "First name: " WHT;
 	getline(cin,name);
 	_contact[_index].set_first(name);
 	if (cin.eof())
 		exit (EXIT_FAILURE);
-	cout <<GRE " Last name: " WHT;
+	cout <<GRE "Last name: " WHT;
 	getline(cin,name);
 	_contact[_index].set_last(name);
 	if (cin.eof())
 		exit (EXIT_FAILURE);
-	cout <<GRE " Nickname: " WHT;
+	cout <<GRE "Nickname: " WHT;
 	getline(cin,name);
 	_contact[_index].set_nick(name);
 	if (cin.eof())
 		exit (EXIT_FAILURE);
-	cout <<GRE " Phone number: " WHT;
+	cout <<GRE "Phone number: " WHT;
 	getline(cin,name);
 	_contact[_index].set_phone(name);
 	if (cin.eof())
 		exit (EXIT_FAILURE);
-	cout <<GRE " Darknest secret: " WHT;
+	cout <<GRE "Darknest secret: " WHT;
 	getline(cin,name);
 	_contact[_index].set_secret(name);
 	_index++;
@@ -118,7 +118,7 @@ void	PhoneBook::search_contact(void)
 		exit(EXIT_FAILURE);
 	if (_nb_contact == 0)
 	{
-		cout <<RED " There is no contact. Please ADD a contact before SEARCH" WHT<< endl;
+		cout <<RED "There is no contact. Please ADD a contact before SEARCH" WHT<< endl;
 		return ;
 	}
 	display_menu();
