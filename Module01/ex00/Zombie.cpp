@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 14:26:13 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/01 14:47:51 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/01 22:18:36 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,18 @@ using std::cout;
 using std::endl;
 
 // Constructor and Destructor
-Zombie::Zombie(void):_name("Boully")
+Zombie::Zombie(void)
 {
+}
+
+Zombie::Zombie(string name)
+{
+	_name = name;
 }
 
 Zombie::~Zombie(void)
 {
+	cout << _name << " has been destroyed" << endl;
 }
 
 // Fonctions

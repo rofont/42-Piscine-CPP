@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
+#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2023/11/01 14:25:19 by rofontai         ###   ########.fr        #
+#    Updated: 2023/11/01 22:18:58 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME	= BrainZ
 
 CC		= g++
-CFLAGS	= -Wall -Wextra -Werror -std=c++98
+CFLAGS	= -g -Wall -Wextra -Werror -std=c++98
 
 SRC		= $(wildcard *.cpp)
 
@@ -56,4 +56,9 @@ fclean	: clean
 
 re	: fclean all
 
-.PHONY	: all clean fclean re
+leak	: valgrind
+
+leaks	:
+	@leaks --atExit -- ./$(NAME)
+
+.PHONY	: all clean fclean re leaks leak

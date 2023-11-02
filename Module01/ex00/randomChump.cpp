@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 14:27:30 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/01 14:56:51 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/01 22:03:40 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,6 @@
 
 void	randomChump(std::string name)
 {
+	Zombie clutch(name);
+	clutch.announce();
 }

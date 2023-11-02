@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 14:38:22 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/01 14:56:43 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/01 22:11:51 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 # include <string>
 
 using std::string;
-
+using std::cout;
+using std::endl;
 class Zombie
 {
 	public:
 
 	Zombie(void);
+	Zombie(string name);
 	~Zombie(void);
 	void	announce(void);
 
