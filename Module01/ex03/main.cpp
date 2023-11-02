@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 14:38:22 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/02 12:44:09 by rofontai         ###   ########.fr       */
+/*   Created: 2023/11/01 14:25:58 by rofontai          #+#    #+#             */
+/*   Updated: 2023/11/02 11:32:04 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
-# include <iostream>
-# include <string>
-
-using std::string;
-using std::cout;
-using std::endl;
-class Zombie
+int main()
 {
-	public:
-	Zombie(void);
-	Zombie(string name);
-	~Zombie(void);
-	void	announce(void);
-
-	private:
-	string _name;
-};
-
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
-
-#endif
+	{
+	Weapon club = Weapon("crude spiked club");
+	HumanA bob("Bob", club);
+	bob.attack();
+	club.setType("some other type of club");
+	bob.attack();
+	}
+	{
+	Weapon club = Weapon("crude spiked club");
+	HumanB jim("Jim");
+	jim.setWeapon(club);
+	jim.attack();
+	club.setType("some other type of club");
+	jim.attack();
+	}
+	return 0;
+}

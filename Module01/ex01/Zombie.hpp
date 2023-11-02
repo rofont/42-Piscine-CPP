@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 14:38:22 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/02 12:44:09 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:03:18 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,18 @@ using std::endl;
 class Zombie
 {
 	public:
+
 	Zombie(void);
-	Zombie(string name);
 	~Zombie(void);
+
+	void	setName(string name);
 	void	announce(void);
 
 	private:
+
 	string _name;
 };
 
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
+Zombie*	zombieHorde(int N, std::string name);
 
 #endif

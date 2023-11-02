@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 14:38:22 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/02 12:44:09 by rofontai         ###   ########.fr       */
+/*   Created: 2023/11/02 09:37:31 by rofontai          #+#    #+#             */
+/*   Updated: 2023/11/02 10:22:10 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
+#include "Zombie.hpp"
 
-# include <iostream>
-# include <string>
-
-using std::string;
-using std::cout;
-using std::endl;
-class Zombie
+Zombie*	zombieHorde(int N, std::string name)
 {
-	public:
-	Zombie(void);
-	Zombie(string name);
-	~Zombie(void);
-	void	announce(void);
+	if (N < 1)
+	{
+		cout << "The numbers of Zombie is not accepted" <<endl;
+		exit(EXIT_FAILURE);
+	}
+	if (name.empty())
+	{
+		cout << "The Zombie have not name" <<endl;
+		exit(EXIT_FAILURE);
+	}
+	Zombie *myHordeZombie = new Zombie[N];
 
-	private:
-	string _name;
-};
+	for(int i = 0; i < N; i++)
+		myHordeZombie[i].setName(name);
 
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
-
-#endif
+	return myHordeZombie;
+}
