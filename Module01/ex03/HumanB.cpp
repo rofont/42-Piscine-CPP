@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:00:08 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/02 11:40:07 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:40:06 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,27 @@ using std::endl;
 
 HumanB::HumanB(void)
 {
+	//message de construction
 }
 
-HumanB::HumanB(Weapon weapon) : _weapon(weapon)
+HumanB::HumanB(string name) :  _weapon(NULL), _name(name)
 {
+	//message de construction
 }
 
 HumanB::~HumanB(void)
 {
+	// cout << _weapon->getType() << " has been destroyed" << endl;
 }
 
-void	HumanB::attack(void)
+void	HumanB::setWeapon(Weapon &weapon)
 {
-	cout << _name <<  " attacks with their " << _weapon.getType() << endl;
+	delete _weapon;
+	_weapon = &weapon;
+}
+
+void	HumanB::attack(void) const
+{
+	//gérer si pas d'arme
+	cout << _name << " attacks with their " << _weapon->getType() << endl;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:59:27 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/02 12:54:30 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:32:57 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 using std::cout;
 using std::endl;
 
-HumanA::HumanA(Weapon weapon) : _weapon(weapon)
+HumanA::HumanA(string name, Weapon &weapon) : _weapon(weapon), _name(name)
 {
+	//message de construction
 }
 
 HumanA::~HumanA(void)
 {
+	//message de destruction
 }
 
-void	HumanA::attack(void)
+void	HumanA::attack(void) const
 {
-	cout << _name <<  " attacks with their " << _weapon.getType() << endl;
+	cout << _name << " attack with their " << _weapon.getType() << endl;
 }
