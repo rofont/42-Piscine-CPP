@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:59:27 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/03 11:32:57 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/03 13:19:18 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ using std::endl;
 
 HumanA::HumanA(string name, Weapon &weapon) : _weapon(weapon), _name(name)
 {
-	//message de construction
+	cout << _name << " with their " << _weapon.getType() << " has been created " << endl;
 }
 
 HumanA::~HumanA(void)
 {
-	//message de destruction
+	cout << _name << " and his weapons have been destroyed" << endl;
 }
 
 void	HumanA::attack(void) const

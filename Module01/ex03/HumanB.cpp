@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 11:00:08 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/03 11:40:06 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/03 13:19:07 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,15 @@
 using std::cout;
 using std::endl;
 
-HumanB::HumanB(void)
-{
-	//message de construction
-}
 
 HumanB::HumanB(string name) :  _weapon(NULL), _name(name)
 {
-	//message de construction
+	cout << _name << " has been created " << endl;
 }
 
 HumanB::~HumanB(void)
 {
-	// cout << _weapon->getType() << " has been destroyed" << endl;
+	cout << _name << " and his weapons have been destroyed" << endl;
 }
 
 void	HumanB::setWeapon(Weapon &weapon)

@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:59:53 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/03 11:16:35 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/03 13:19:52 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 class HumanB
 {
 	public:
-	HumanB(void);
 	HumanB(string name);
 	~HumanB(void);
 
