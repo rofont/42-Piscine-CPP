@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 13:50:19 by romain            #+#    #+#             */
-/*   Updated: 2023/11/03 15:52:02 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/06 11:26:24 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,26 @@ int	main(int ac, char **av)
 	string current = av[2];
 	string replace = av[3];
 
-	std::fstream myFlux(name_file);
+	std::ifstream myFlux(name_file);
 	if (!myFlux)
 	{
 		cerr << "🚨 This file is wrong or you don't have acces" << endl;
 		exit(EXIT_FAILURE);
 	}
-
-
-
-
+	std::ofstream myNew(name_file.append(".replace"));
+	string line;
+	while (getline(myFlux, line))
+	{
+		size_t pos = line.find(current);
+		while (pos != string::npos)
+		{
+			line.erase(pos, current.length());
+			line.insert(pos, replace);
+			pos = line.find(current, pos + replace.length());
+		}
+		myNew << line << endl;
+	}
+	myFlux.close();
+	myNew.close();
 	return 0;
 }
