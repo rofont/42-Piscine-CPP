@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:38:53 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/08 21:27:48 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/09 09:46:56 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ int const Fixed::_bits = 8;
 
 Fixed::Fixed(void) : _nb(0)
 {
-	cout << "Default constructor called" << endl;
+	// cout << "Default constructor called" << endl;
 }
 
 Fixed::Fixed(Fixed const &copy)
 {
-	cout << "Copy constructor called" << endl;
+	// cout << "Copy constructor called" << endl;
 	*this = copy;
 }
 
 Fixed::~Fixed(void)
 {
-	cout << "Destructor called" << endl;
+	// cout << "Destructor called" << endl;
 }
 
 Fixed	&Fixed::operator=(Fixed const &rhs)
@@ -77,27 +77,27 @@ std::ostream &operator<<(std::ostream &out, Fixed const &rhs)
 	return out;
 }
 
-bool Fixed::operator>(Fixed const &rhs)
+bool Fixed::operator>(Fixed const &rhs) const
 {
 	return (toFloat() > rhs.toFloat() ? true : false);
 }
-bool Fixed::operator<(Fixed const &rhs)
+bool Fixed::operator<(Fixed const &rhs) const
 {
 	return (toFloat() < rhs.toFloat() ? true : false);
 }
-bool Fixed::operator>=(Fixed const &rhs)
+bool Fixed::operator>=(Fixed const &rhs) const
 {
 	return (toFloat() >= rhs.toFloat() ? true : false);
 }
-bool Fixed::operator<=(Fixed const &rhs)
+bool Fixed::operator<=(Fixed const &rhs) const
 {
 	return (toFloat() <= rhs.toFloat() ? true : false);
 }
-bool Fixed::operator==(Fixed const &rhs)
+bool Fixed::operator==(Fixed const &rhs) const
 {
 	return (toFloat() == rhs.toFloat() ? true : false);
 }
-bool Fixed::operator!=(Fixed const &rhs)
+bool Fixed::operator!=(Fixed const &rhs) const
 {
 	return (toFloat() != rhs.toFloat() ? true : false);
 }
@@ -119,8 +119,56 @@ Fixed Fixed::operator/(Fixed const &rhs)
 	return toFloat() / rhs.toFloat();
 }
 
-// static float min(Fixed &a, Fixed &b);
-// static float min(Fixed const &a, Fixed const &b);
+Fixed Fixed::operator++(int)
+{
+	Fixed temp(*this);
+	++_nb;
+	return temp;
+}
 
-// static float max(Fixed &a, Fixed &b);
-// static float max(Fixed const &a, Fixed const &b);
+Fixed Fixed::operator++(void)
+{
+	_nb++;
+	return *this;
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed temp(*this);
+	--_nb;
+	return temp;
+}
+
+Fixed Fixed::operator--(void)
+{
+	_nb--;
+	return *this;
+}
+
+Fixed &Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a < b)
+		return a;
+	return b;
+}
+
+const Fixed &Fixed::min(Fixed const &a, Fixed const &b)
+{
+	if (a < b)
+		return a;
+	return b;
+}
+
+Fixed &Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a > b)
+		return a;
+	return b;
+}
+
+ const Fixed &Fixed::max(Fixed const &a, Fixed const &b)
+{
+	if (a > b)
+		return a;
+	return b;
+}
