@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
+#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2023/11/02 09:50:56 by rofontai         ###   ########.fr        #
+#    Updated: 2023/11/08 21:14:50 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ARGUMENTS--------------------------------------------------------------------
 
-NAME	= brainZ
+NAME	= Operator
 
 CC		= g++
 CFLAGS	= -g -Wall -Wextra -Werror -std=c++98
