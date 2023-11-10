@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:06:05 by romain            #+#    #+#             */
-/*   Updated: 2023/11/09 20:59:45 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/10 13:51:21 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ Point::~Point(void)
 
 Point const &Point::operator=(Point const &src)
 {
-	setPoint_x(src._x);
-	setPoint_y(src._y);
+	(void)src;
 	return *this;
 }
 
@@ -50,12 +49,12 @@ void Point::setPoint_y(Fixed const &y)
 	(Fixed)_y = y;
 }
 
-Fixed const Point::getPoint_x(void) const
+Fixed const &Point::getPoint_x(void) const
 {
 	return _x;
 }
 
-Fixed const Point::getPoint_y(void) const
+Fixed const &Point::getPoint_y(void) const
 {
 	return _y;
 }

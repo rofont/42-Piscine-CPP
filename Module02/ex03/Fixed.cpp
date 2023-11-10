@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:38:53 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/09 20:55:14 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/10 13:48:59 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ Fixed::~Fixed(void)
 	// cout << "Destructor called" << endl;
 }
 
-Fixed	const &Fixed::operator=(Fixed const &rhs)
+Fixed	&Fixed::operator=(Fixed const &rhs)
 {
 	// cout << "Assignation operator called" << endl;
 	this->_nb = rhs.getRawBits();
@@ -102,19 +102,19 @@ bool Fixed::operator!=(Fixed const &rhs) const
 	return (toFloat() != rhs.toFloat() ? true : false);
 }
 
-Fixed Fixed::operator+(Fixed const &rhs)
+Fixed Fixed::operator+(Fixed const &rhs) const
 {
 	return toFloat() + rhs.toFloat();
 }
-Fixed Fixed::operator-(Fixed const &rhs)
+Fixed Fixed::operator-(Fixed const &rhs) const
 {
 	return toFloat() - rhs.toFloat();
 }
-Fixed Fixed::operator*(Fixed const &rhs)
+Fixed Fixed::operator*(Fixed const &rhs) const
 {
 	return toFloat() * rhs.toFloat();
 }
-Fixed Fixed::operator/(Fixed const &rhs)
+Fixed Fixed::operator/(Fixed const &rhs) const
 {
 	return toFloat() / rhs.toFloat();
 }
