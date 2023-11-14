@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:18:14 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/14 14:08:57 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:23:32 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class ScavTrap : public ClapTrap
 	ScavTrap(ScavTrap &copy);
 	~ScavTrap(void);
 
-	ScavTrap operator=(ScavTrap const &src);
+	ScavTrap &operator=(ScavTrap const &src);
 
 	void guardGate(void);
 

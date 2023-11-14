@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:00:36 by romain            #+#    #+#             */
-/*   Updated: 2023/11/14 14:31:53 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:26:50 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ ClapTrap::~ClapTrap(void)
 	cout << "ClapTrap destructor called" << endl;
 }
 
-ClapTrap ClapTrap::operator=(ClapTrap const &src)
+ClapTrap &ClapTrap::operator=(ClapTrap const &src)
 {
 	cout << "ClapTrap assignation operator called" << endl;
 	this->_name = src.getName();

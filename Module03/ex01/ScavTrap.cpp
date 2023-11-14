@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:20:29 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/14 14:32:23 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:27:24 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ ScavTrap::~ScavTrap(void)
 	cout << "ScavTrap destructor called" << endl;
 }
 
-ScavTrap ScavTrap::operator=(ScavTrap const &src)
+ScavTrap &ScavTrap::operator=(ScavTrap const &src)
 {
 	cout << "ScavTrap assignation operator called" << endl;
-	this->_name = src.getName();
+	this->setName(src.getName());
 	this->_hitPoints = src.getHitPoints();
 	this->_energyPoints = src.getEnergyPoints();
 	this->_attackDamage = src.getAttackDamage();

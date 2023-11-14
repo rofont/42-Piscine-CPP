@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:00:18 by romain            #+#    #+#             */
-/*   Updated: 2023/11/14 14:10:26 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:16:05 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class ClapTrap
 	ClapTrap(ClapTrap &copy);
 	~ClapTrap(void);
 
-	ClapTrap operator=(ClapTrap const &src);
+	ClapTrap &operator=(ClapTrap const &src);
 	void attack(string const &target);
 	void takeDamage(unsigned int amount);
 	void beRepaired( unsigned int amount);
