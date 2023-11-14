@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:00:36 by romain            #+#    #+#             */
-/*   Updated: 2023/11/14 14:33:49 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/14 14:31:53 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ using std::endl;
 
 ClapTrap::ClapTrap(void) : _name("no name"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	cout << "Default constructor called" << endl;
+	cout << "ClapTrap default constructor called" << endl;
 }
 
 ClapTrap::ClapTrap(string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	cout << "Constructor called" << endl;
+	cout << "ClapTrap constructor called" << endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap &copy)
 {
-	cout << "Copy constructor called" << endl;
+	cout << "ClapTrap copy constructor called" << endl;
 	this->_name = copy.getName();
 	this->_hitPoints = copy.getHitPoints();
 	this->_energyPoints = copy.getEnergyPoints();
@@ -36,12 +36,12 @@ ClapTrap::ClapTrap(ClapTrap &copy)
 
 ClapTrap::~ClapTrap(void)
 {
-	cout << "Destructor called" << endl;
+	cout << "ClapTrap destructor called" << endl;
 }
 
 ClapTrap ClapTrap::operator=(ClapTrap const &src)
 {
-	cout << "Assignation operator called" << endl;
+	cout << "ClapTrap assignation operator called" << endl;
 	this->_name = src.getName();
 	this->_hitPoints = src.getHitPoints();
 	this->_energyPoints = src.getEnergyPoints();
@@ -61,11 +61,13 @@ void ClapTrap::attack(string const &target)
 		cout << "ClapTrap " << _name << " can't attack..." << endl;
 }
 
-void ClapTrap::takeDomage(unsigned int amount)
+void ClapTrap::takeDamage(unsigned int amount)
 {
-
-	cout << "ClapTrap " << _name << " takes " << amount << " points of damage !" << endl;
 	_hitPoints -= amount;
+	if (_hitPoints <= 0)
+		cout << _name << " is DEAD !" << endl;
+	else
+		cout << "ClapTrap " << _name << " takes " << amount << " points of damage !" << endl;
 }
 
 void ClapTrap::beRepaired( unsigned int amount)
@@ -119,4 +121,12 @@ int ClapTrap::getEnergyPoints(void) const
 int ClapTrap::getAttackDamage(void) const
 {
 	return _attackDamage;
+}
+
+void ClapTrap::getStatus(void) const
+{
+	cout << "Name: " << _name << endl;
+	cout << "Hits points: " << _hitPoints << endl;
+	cout << "Energy points: " << _energyPoints << endl;
+	cout << "Attack Damage: " << _attackDamage << endl;
 }

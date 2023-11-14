@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
+#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2023/11/10 20:35:47 by romain           ###   ########.fr        #
+#    Updated: 2023/11/14 10:35:59 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ARGUMENTS--------------------------------------------------------------------
 
-NAME	=
+NAME	= ScavTrap
 
 CC		= g++
 CFLAGS	= -g -Wall -Wextra -Werror -std=c++98
