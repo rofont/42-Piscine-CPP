@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:18:14 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/14 15:31:19 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:41:53 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	public:
 	ScavTrap(void);
@@ -27,7 +27,10 @@ class ScavTrap : public ClapTrap
 
 	void guardGate(void);
 
+	int const &getScavEnergyPoints(void) const;
+
 	private:
+	static int defaultEp;
 	bool _guardGate;
 };
 

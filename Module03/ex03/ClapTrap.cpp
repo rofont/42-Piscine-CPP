@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:00:36 by romain            #+#    #+#             */
-/*   Updated: 2023/11/15 21:52:16 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/16 10:23:36 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,20 @@
 using std::cout;
 using std::endl;
 
-ClapTrap::ClapTrap(void) : _name("no name"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+int ClapTrap::_hitPoints = 10;
+int ClapTrap::_energyPoints = 10;
+int ClapTrap::_attackDamage = 0;
+string ClapTrap::_name = "no name";
+
+
+ClapTrap::ClapTrap(void)
 {
 	cout << _name << "_ Default constructor called" << endl;
 }
 
-ClapTrap::ClapTrap(string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap(string name)
 {
+	this->_name = name;
 	cout << _name <<"_ Constructor called" << endl;
 }
 
@@ -83,20 +90,20 @@ void ClapTrap::beRepaired( unsigned int amount)
 
 string const &ClapTrap::getName(void) const
 {
-	return _name;
+	return this->_name;
 }
 
 int const &ClapTrap::getHitPoints(void) const
 {
-	return _hitPoints;
+	return this->_hitPoints;
 }
 
 int const &ClapTrap::getEnergyPoints(void) const
 {
-	return _energyPoints;
+	return this->_energyPoints;
 }
 
 int const &ClapTrap::getAttackDamage(void) const
 {
-	return _attackDamage;
+	return this->_attackDamage;
 }

@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:45:21 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/15 11:00:45 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/16 10:41:46 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 	public:
 	FragTrap(void);
@@ -26,6 +26,12 @@ class FragTrap : public ClapTrap
 	FragTrap &operator=(FragTrap const &src);
 
 	void highFivesGuys(void);
+	int const &getFragHitPoints(void) const;
+	int const &getFragAttackDamage(void) const;
+
+	private:
+	static int defaultHp;
+	static int defaultAd;
 };
 
 

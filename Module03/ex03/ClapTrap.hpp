@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:00:18 by romain            #+#    #+#             */
-/*   Updated: 2023/11/15 22:06:14 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/16 10:41:31 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ class ClapTrap
 	~ClapTrap(void);
 
 	ClapTrap &operator=(ClapTrap const &src);
-	void attack(string const &target);
-	void takeDamage(unsigned int amount);
-	void beRepaired( unsigned int amount);
+	virtual void attack(string const &target);
+	virtual void takeDamage(unsigned int amount);
+	virtual void beRepaired( unsigned int amount);
 
 	string const &getName(void) const;
 	int const &getHitPoints(void) const;
@@ -38,10 +38,10 @@ class ClapTrap
 	int const &getAttackDamage(void) const;
 
 	protected:
-	string _name;
-	int _hitPoints;
-	int _energyPoints;
-	int _attackDamage;
+	static string _name;
+	static int _hitPoints;
+	static int _energyPoints;
+	static int _attackDamage;
 
 };
 

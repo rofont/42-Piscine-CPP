@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 11:46:40 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/15 22:33:43 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/16 10:42:15 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "ScavTrap.hpp"
 # include "FragTrap.hpp"
 
-class DiamondTrap : public ClapTrap, public ScavTrap, public FragTrap
+class DiamondTrap : virtual public ScavTrap, virtual public FragTrap
 {
 	public:
 	DiamondTrap(void);
@@ -26,10 +26,10 @@ class DiamondTrap : public ClapTrap, public ScavTrap, public FragTrap
 
 	DiamondTrap &operator=(DiamondTrap const &src);
 
-	void whoIam(void);
+	void whoAmI(void);
 	using ScavTrap::attack;
-
-
+	using FragTrap::takeDamage;
+	using ClapTrap::beRepaired;
 	private:
 	string _name;
 };

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:20:29 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/15 22:19:28 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/16 10:12:44 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 using std::cout;
 using std::endl;
 
+int ScavTrap::defaultEp = 50;
+
 ScavTrap::ScavTrap(void) : ClapTrap("no name"), _guardGate(false)
 {
 	_hitPoints = 100;
-	_energyPoints = 50;
+	_energyPoints = this->getScavEnergyPoints();
 	_attackDamage = 20;
 	cout << "ScavTrap " << _name << "_ Default constructor called" << endl;
 }
@@ -27,7 +29,7 @@ ScavTrap::ScavTrap(string name) : ClapTrap(name)
 {
 	_guardGate = false;
 	_hitPoints = 100;
-	_energyPoints = 50;
+	_energyPoints = this->getScavEnergyPoints();
 	_attackDamage = 20;
 	cout << "ScavTrap " << _name << " _Constructor called" << endl;
 }
@@ -76,4 +78,9 @@ void ScavTrap::guardGate(void)
 	else
 			cout << _name << " can't guard gate because he's dead !" << endl;
 
+}
+
+int const &ScavTrap::getScavEnergyPoints(void) const
+{
+	return this->defaultEp;
 }
