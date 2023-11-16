@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:00:18 by romain            #+#    #+#             */
-/*   Updated: 2023/11/14 15:16:05 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:06:14 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,10 @@ class ClapTrap
 	void takeDamage(unsigned int amount);
 	void beRepaired( unsigned int amount);
 
-	void setName(string name);
-	void setHitPoints(int hits);
-	void setEnergyPoints(int energy);
-	void setAttackDamage(int damage);
-
-	string getName(void) const;
-	int getHitPoints(void) const;
-	int getEnergyPoints(void) const;
-	int getAttackDamage(void) const;
-	void getStatus(void) const;
+	string const &getName(void) const;
+	int const &getHitPoints(void) const;
+	int const &getEnergyPoints(void) const;
+	int const &getAttackDamage(void) const;
 
 	protected:
 	string _name;

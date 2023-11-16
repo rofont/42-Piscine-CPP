@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:00:02 by romain            #+#    #+#             */
-/*   Updated: 2023/11/13 16:13:13 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/15 22:01:10 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@ using std::endl;
 
 int main (void)
 {
-	ClapTrap Pierre("Igor");
-	ClapTrap Paul;
+	ClapTrap first("Igor");
+	ClapTrap second(first);
+	ClapTrap third("Boggy");
+	ClapTrap forth("Teach");
 
-	Pierre.setAttackDamage(10);
-	Paul.setAttackDamage(5);
-
-	Paul.attack("Igor");
-	Pierre.takeDomage(5);
-	Pierre.attack("No name");
-	Paul.takeDomage(10);
-	Paul.beRepaired(5);
-	Pierre.attack("No name");
-	Paul.takeDomage(10);
+	forth = third;
+	first.attack("Boggy");
+	for (int i = 0; i < 11 ; i++)
+		second.beRepaired(1);
+	third.takeDamage(5);
+	forth.takeDamage(100);
+	forth.attack("Igor");
+	forth.beRepaired(1000);
 
 	return 0;
 }

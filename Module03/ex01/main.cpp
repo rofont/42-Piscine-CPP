@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:00:02 by romain            #+#    #+#             */
-/*   Updated: 2023/11/14 15:12:54 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:13:05 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,27 @@ using std::endl;
 
 int main()
 {
-	ClapTrap first("Clappy");
+	ClapTrap first("Igor");
 	ClapTrap second(first);
-	ScavTrap third("Scavy");
-	ScavTrap forth("lol");
+	ScavTrap third("Teach");
+	ScavTrap forth("Boggy");
 	ScavTrap guard("Guardian");
 
  	forth = third;
-
-	cout << endl;
-	first.getStatus();
-	second.getStatus();
-	third.getStatus();
-	forth.getStatus();
-	guard.getStatus();
-
-	cout << std::endl << endl;
-	first.attack("Clappier");
+	std::cout << std::endl << std::endl;
+	first.attack("Teach");
 	for (int i = 0; i < 11 ; i++)
 		second.beRepaired(1);
-
-	cout << endl << endl;
+	std::cout << std::endl << std::endl;
 	third.takeDamage(5);
 	forth.takeDamage(100);
-	forth.attack("Clappy");
+	forth.attack("Guardian");
 	forth.beRepaired(1000);
 	guard.guardGate();
-	guard.attack("Scavy");
+	guard.attack("Igor");
 	guard.beRepaired(10);
 	guard.takeDamage(10);
 	guard.guardGate();
-	guard.attack("Scavy");
-
-	cout << endl;
-	cout << endl << endl;
+	guard.attack("Igor");
+	std::cout << std::endl << std::endl;
 }

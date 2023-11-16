@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:00:18 by romain            #+#    #+#             */
-/*   Updated: 2023/11/13 16:04:24 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/15 21:46:13 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,15 @@ class ClapTrap
 	ClapTrap(ClapTrap &copy);
 	~ClapTrap(void);
 
-	ClapTrap operator=(ClapTrap const &src);
+	ClapTrap &operator=(ClapTrap const &src);
 	void attack(string const &target);
-	void takeDomage(unsigned int amount);
+	void takeDamage(unsigned int amount);
 	void beRepaired( unsigned int amount);
 
-	void setName(string name);
-	void setHitPoints(int hits);
-	void setEnergyPoints(int energy);
-	void setAttackDamage(int damage);
-
-	string getName(void) const;
-	int getHitPoints(void) const;
-	int getEnergyPoints(void) const;
-	int getAttackDamage(void) const;
+	string const &getName(void) const;
+	int const &getHitPoints(void) const;
+	int const &getEnergyPoints(void) const;
+	int const &getAttackDamage(void) const;
 
 	private:
 	string _name;

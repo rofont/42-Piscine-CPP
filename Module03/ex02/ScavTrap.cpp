@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 10:20:29 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/14 15:32:04 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/15 22:19:28 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ using std::endl;
 
 ScavTrap::ScavTrap(void) : ClapTrap("no name"), _guardGate(false)
 {
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 20;
+	cout << "ScavTrap " << _name << "_ Default constructor called" << endl;
 }
 
 ScavTrap::ScavTrap(string name) : ClapTrap(name)
@@ -25,32 +29,32 @@ ScavTrap::ScavTrap(string name) : ClapTrap(name)
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
-	cout << "ScavTrap Constructor called" << endl;
+	cout << "ScavTrap " << _name << " _Constructor called" << endl;
 }
 
 ScavTrap::ScavTrap(ScavTrap &copy)
 {
-	cout << "ScavTrap copy constructor called" << endl;
 	this->_name = copy.getName();
 	this->_hitPoints = copy.getHitPoints();
 	this->_energyPoints = copy.getEnergyPoints();
 	this->_attackDamage = copy.getAttackDamage();
 	this->_guardGate = copy._guardGate;
+	cout << "ScavTrap " << _name << "_ copy constructor called" << endl;
 }
 
 ScavTrap::~ScavTrap(void)
 {
-	cout << "ScavTrap destructor called" << endl;
+	cout << "ScavTrap " << _name << "_ destructor called" << endl;
 }
 
 ScavTrap &ScavTrap::operator=(ScavTrap const &src)
 {
-	cout << "ScavTrap assignation operator called" << endl;
-	this->setName(src.getName());
+	this->_name = src.getName();
 	this->_hitPoints = src.getHitPoints();
 	this->_energyPoints = src.getEnergyPoints();
 	this->_attackDamage = src.getAttackDamage();
 	this->_guardGate = src._guardGate;
+	cout << "ScavTrap " << _name << "_ assignation operator called" << endl;
 	return *this;
 }
 
