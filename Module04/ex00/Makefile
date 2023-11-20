@@ -6,13 +6,13 @@
 #    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2023/11/20 12:13:09 by rofontai         ###   ########.fr        #
+#    Updated: 2023/11/20 10:42:40 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ARGUMENTS--------------------------------------------------------------------
 
-NAME	= ClapTrap
+NAME	= Animals
 
 CC		= g++
 CFLAGS	= -g -Wall -Wextra -Werror -std=c++98
