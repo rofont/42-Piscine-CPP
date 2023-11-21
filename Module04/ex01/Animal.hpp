@@ -1,0 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/20 10:43:24 by rofontai          #+#    #+#             */
+/*   Updated: 2023/11/20 13:47:23 by rofontai         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
+
+# include <iostream>
+
+// COLORS----------------------------------------------------------------------
+# define BCK "\x1B[30m"
+# define RED "\x1B[31m"
+# define GRE "\x1B[32m"
+# define YEL "\x1B[33m"
+# define BLE "\x1B[34m"
+# define MAG "\x1B[35m"
+# define CYA "\x1B[36m"
+# define WHT "\x1B[37m"
+//-----------------------------------------------------------------------------
+
+using std::string;
+
+class Animal
+{
+	public:
+		Animal(void);
+		Animal(Animal &copy);
+		virtual~Animal(void);
+
+		Animal &operator=(Animal const &src);
+
+		virtual string getType(void) const;
+		virtual void makeSound(void) const;
+
+	protected:
+		string _type;
+};
+
+#endif

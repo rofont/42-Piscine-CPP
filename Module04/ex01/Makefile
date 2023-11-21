@@ -6,13 +6,13 @@
 #    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2023/11/20 10:41:52 by rofontai         ###   ########.fr        #
+#    Updated: 2023/11/21 08:45:07 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ARGUMENTS--------------------------------------------------------------------
 
-NAME	= 
+NAME	= Animal_Brains
 
 CC		= g++
 CFLAGS	= -g -Wall -Wextra -Werror -std=c++98
