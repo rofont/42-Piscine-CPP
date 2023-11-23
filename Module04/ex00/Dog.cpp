@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:01:54 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/20 12:01:53 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:50:29 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ Dog &Dog::operator=(Dog const &src)
 	cout << "DOG " <<  _type << " Assignation operator" << endl;
 }
 
-string Dog::getType(void) const
+const string &Dog::getType(void) const
 {
 	return _type;
 }

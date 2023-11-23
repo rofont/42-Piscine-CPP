@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:24 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/20 13:47:23 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:51:12 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class Animal
 
 		Animal &operator=(Animal const &src);
 
-		virtual string getType(void) const;
+		const string &getType(void) const;
 		virtual void makeSound(void) const;
 
 	protected:

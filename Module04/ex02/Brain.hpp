@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 10:59:14 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/23 11:50:18 by rofontai         ###   ########.fr       */
+/*   Created: 2023/11/21 08:45:53 by rofontai          #+#    #+#             */
+/*   Updated: 2023/11/23 12:00:21 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
-# include "Animal.hpp"
+# include <iostream>
+# include <string>
 
-class Dog : public Animal
+using std::string;
+
+class Brain
 {
 	public:
-		Dog(void);
-		Dog(Dog &copy);
-		virtual~Dog(void);
+		Brain(void);
+		Brain(Brain &copy);
+		~Brain(void);
 
-		Dog &operator=(Dog const &src);
-		void makeSound(void) const;
-		const string &getType(void) const;
+		Brain &operator=(Brain const &src);
+		void printBrain(void);
+		const string &getIdea(int const &i) const;
+		void setIdea(string const &idea, int const &i);
+
+	private:
+		string _ideas[100];
 };
 
 #endif

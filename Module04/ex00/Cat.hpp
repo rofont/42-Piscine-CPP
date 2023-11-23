@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:08:36 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/20 11:58:06 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:50:43 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class Cat : public Animal
 
 		Cat &operator=(Cat const &src);
 
-		virtual void makeSound(void) const;
-		virtual string getType(void) const;
+		void makeSound(void) const;
+		const string &getType(void) const;
 };
 
 #endif

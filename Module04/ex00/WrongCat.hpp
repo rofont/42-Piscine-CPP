@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:51:01 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/20 14:50:04 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:55:34 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ class WrongCat : public WrongAnimal
 
 		WrongCat &operator=(WrongCat const &src);
 		void makeSound(void) const;
-
 };
 
 #endif

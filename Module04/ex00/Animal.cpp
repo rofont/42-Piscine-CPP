@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:02 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/20 11:18:14 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:51:03 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ Animal &Animal::operator=(Animal const &src)
 	cout << "ANIMAL " <<  _type << " Assignation operator" << endl;
 }
 
-string Animal::getType(void) const
+const string &Animal::getType(void) const
 {
 	return _type;
 }

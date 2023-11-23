@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:51:01 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/20 14:49:35 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:54:50 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class WrongAnimal
 		~WrongAnimal(void);
 
 		WrongAnimal &operator=(WrongAnimal const &src);
-		string getType(void) const;
+		const string &getType(void) const;
 		void makeSound(void) const;
 
 	protected:

@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:55:41 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/20 14:49:46 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/23 11:55:04 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ WrongAnimal &WrongAnimal::operator=(WrongAnimal const &src)
 	cout << "WRONG_ANIMAL " <<  _typeWrong << " Assignation operator" << endl;
 }
 
-string WrongAnimal::getType(void) const
+const string &WrongAnimal::getType(void) const
 {
 	return _typeWrong;
 }

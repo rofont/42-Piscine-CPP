@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:55:41 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/23 11:55:27 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/20 14:48:24 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ WrongCat &WrongCat::operator=(WrongCat const &src)
 	return *this;
 	cout << "WRONG_CAT " <<  _typeWrong << " Assignation operator" << endl;
 }
+
+// string WrongCat::getTypeWrong(void) const
+// {
+// 	return _typeWrong;
+// }
 
 void WrongCat::makeSound(void) const
 {
