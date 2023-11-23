@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
+#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2023/11/15 11:46:17 by rofontai         ###   ########.fr        #
+#    Updated: 2023/11/16 09:01:39 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME	= DiamonTrap
 
-CC		= g++
+CC		= c++
 CFLAGS	= -g -Wall -Wextra -Werror -std=c++98
 
 SRC		= $(wildcard *.cpp)

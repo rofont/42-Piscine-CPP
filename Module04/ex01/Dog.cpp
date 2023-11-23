@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:01:54 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/21 10:47:58 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:22:46 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,14 @@ string Dog::getType(void) const
 void Dog::makeSound(void) const
 {
 	cout << "DOG " << _type << " make this sound : Ouaf Ouaf !" << endl;
+}
+
+void Dog::setIdea(string const &idea, int const &i)
+{
+	_DogBrain->setIdea(idea, i);
+}
+
+string Dog::getIdea(int const &i) const
+{
+	return _DogBrain->getIdea(i);
 }

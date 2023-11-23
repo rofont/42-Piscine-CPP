@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:59:14 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/21 14:33:29 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:21:43 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ class Dog : public Animal
 		Dog &operator=(Dog const &src);
 		virtual void makeSound(void) const;
 		virtual string getType(void) const;
+		void setIdea(string const &idea, int const &i);
+		string getIdea(int const &i) const;
 
 	private:
 		Brain *_DogBrain;

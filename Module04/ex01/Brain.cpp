@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 08:46:05 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/21 10:35:30 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:08:33 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,14 @@ void Brain::printBrain(void)
 {
 	for (int i = 0; i < 100; i++)
 		cout << "ID " << i+1 << ": " << _ideas[i] << endl;
+}
+
+string Brain::getIdea(int const &i) const
+{
+	return _ideas[i];
+}
+
+void Brain::setIdea(string const &idea, int const &i)
+{
+	_ideas[i] = idea;
 }

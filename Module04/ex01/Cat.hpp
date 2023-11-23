@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:08:36 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/21 10:45:44 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:20:35 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ class Cat : public Animal
 
 		virtual void makeSound(void) const;
 		virtual string getType(void) const;
+		void setIdea(string const &idea, int const &i);
+		string getIdea(int const &i) const;
 
 	private:
 		Brain *_CatBrain;

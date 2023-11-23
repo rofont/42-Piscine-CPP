@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:01:54 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/21 10:48:11 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:21:31 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,14 @@ string Cat::getType(void) const
 void Cat::makeSound(void) const
 {
 	cout << "CAT " << _type << " make this sound : Miaou Miaou !" << endl;
+}
+
+void Cat::setIdea(string const &idea, int const &i)
+{
+	_CatBrain->setIdea(idea, i);
+}
+
+string Cat::getIdea(int const &i) const
+{
+	return _CatBrain->getIdea(i);
 }

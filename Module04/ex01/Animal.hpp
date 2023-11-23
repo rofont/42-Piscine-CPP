@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:24 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/20 13:47:23 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:20:50 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ class Animal
 
 		virtual string getType(void) const;
 		virtual void makeSound(void) const;
+
+		 virtual void setIdea(string const &idea, int const &i) = 0;
+		 virtual string getIdea(int const &i) const = 0;
 
 	protected:
 		string _type;

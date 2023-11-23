@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 08:45:53 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/21 10:31:34 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:08:23 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class Brain
 
 		Brain &operator=(Brain const &src);
 		void printBrain(void);
+		string getIdea(int const &i) const;
+		void setIdea(string const &idea, int const &i);
 
 	private:
 		string _ideas[100];
