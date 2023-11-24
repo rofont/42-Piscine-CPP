@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:57:13 by romain            #+#    #+#             */
-/*   Updated: 2023/11/23 22:43:37 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/24 12:11:45 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ using std::endl;
 
 int main(void)
 {
+	cout <<CYA "----- TEST SUBJECT MAIN -----" WHT<< endl << endl;
 	IMateriaSource* src = new MateriaSource();
 	cout << endl;
 	src->learnMateria(new Ice());
@@ -34,7 +35,7 @@ int main(void)
 	cout << endl;
 	me->equip(tmp);
 	cout << endl;
-	// tmp = src->createMateria("cure");
+	tmp = src->createMateria("cure");
 	cout << endl;
 	me->equip(tmp);
 	cout << endl;
@@ -50,5 +51,49 @@ int main(void)
 	cout << endl;
 	delete src;
 	cout << endl;
+
+	cout <<CYA "----- TEST  CHAT-----" WHT<< endl;
+	cout << endl;
+	Character player("Player1");
+	cout << endl;
+    AMateria *iceMateria = new Ice();
+    cout << endl;
+	AMateria *cureMateria = new Cure();
+	cout << endl;
+    player.equip(iceMateria);
+    cout << endl;
+	player.equip(cureMateria);
+	cout << endl;
+    ICharacter *target = new Character("Target1");
+    cout << endl;
+	player.use(0, *target);
+    cout << endl;
+	player.use(1, *target);
+	cout << endl;
+    IMateriaSource *materiaSource = new MateriaSource();
+    cout << endl;
+	materiaSource->learnMateria(new Ice());
+    cout << endl;
+	materiaSource->learnMateria(new Cure());
+	cout << endl;
+    AMateria *newIce = materiaSource->createMateria("ice");
+    cout << endl;
+	AMateria *newCure = materiaSource->createMateria("cure");
+	cout << endl;
+    std::cout <<CYA "Testing complete." WHT<< std::endl;
+	cout << endl;
+    delete iceMateria;
+	cout << endl;
+    delete cureMateria;
+	cout << endl;
+    delete target;
+	cout << endl;
+    delete materiaSource;
+	cout << endl;
+    delete newIce;
+	cout << "salut " << endl;
+    delete newCure;
+	cout << endl;
+
 	return 0;
 }

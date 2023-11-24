@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:05:46 by romain            #+#    #+#             */
-/*   Updated: 2023/11/23 22:17:46 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/24 09:15:10 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ Cure::~Cure(void)
 
 Cure &Cure::operator=(Cure const &src)
 {
-	_type = src._type;
+	if (this != &src)
+		AMateria::operator=(src);
 	cout << "CURE " << _type << " Assignation Operator" << endl;
 	return *this;
 }
@@ -48,7 +49,6 @@ AMateria* Cure::clone(void) const
 	*CureClone = *this;
 	cout << "CURE " << getType() << " has been cloned" << endl;
 	return CureClone;
-	// return new Cure;
 }
 
 void Cure::use(ICharacter& target)

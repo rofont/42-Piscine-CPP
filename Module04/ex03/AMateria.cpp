@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:56:54 by romain            #+#    #+#             */
-/*   Updated: 2023/11/23 22:00:50 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/24 09:04:57 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ AMateria::~AMateria(void)
 
 AMateria &AMateria::operator=(AMateria const &src)
 {
-	_type = src._type;
+	if (this != &src)
+		_type = src._type;
 	cout << "AMATERIA " << _type << " Assignation Operator" << endl;
 	return *this;
 }
@@ -47,9 +48,4 @@ AMateria &AMateria::operator=(AMateria const &src)
 std::string const & AMateria::getType() const
 {
 	return _type;
-}
-
-void AMateria::use(ICharacter& target)
-{
-	cout << "* heals " << target.getName() << "'s wounds *" << endl;
 }

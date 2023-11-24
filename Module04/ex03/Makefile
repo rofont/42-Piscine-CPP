@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
+#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2023/11/23 21:35:13 by romain           ###   ########.fr        #
+#    Updated: 2023/11/24 10:50:03 by rofontai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ re	: fclean all
 leak	:
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 
-leaks	:
+leaks	: all
 	@leaks --atExit -- ./$(NAME)
 
 .PHONY	: all clean fclean re leaks leak

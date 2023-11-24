@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:05:48 by romain            #+#    #+#             */
-/*   Updated: 2023/11/23 22:19:05 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/24 09:12:59 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ Ice::~Ice(void)
 
 Ice &Ice::operator=(Ice const &src)
 {
-	_type = src._type;
+	if (this != &src)
+		AMateria::operator=(src);
 	return *this;
 	cout << "ICE " << _type << " Assignation Operator" << endl;
 }
@@ -48,6 +49,7 @@ AMateria* Ice::clone(void) const
 	*iceClone = *this;
 	cout << "ICE " << getType() << " has been cloned" << endl;
 	return iceClone;
+
 }
 
 void Ice::use(ICharacter& target)

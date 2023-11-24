@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 19:14:25 by romain            #+#    #+#             */
-/*   Updated: 2023/11/23 22:45:49 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/24 12:11:35 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,32 +41,16 @@ Character::Character(Character &copy)
 Character::~Character(void)
 {
 	for (uint i = 0; i < 4; i++)
-	{
-		if(_stock[i])
-		{
-			delete _stock[i];
-			_stock[i] = nullptr;
-		}
-		else
-			_stock[i] = nullptr;
-	}
+		delete _stock[i];
 	cout << "CHARACTER " << _name << " Default Destructor" << endl;
 }
 
 Character &Character::operator=(Character const &src)
 {
-	for (uint i = 0; i < 4; i++)
-	{
-		if(_stock[i])
-		{
-			delete _stock[i];
-			_stock[i] = nullptr;
-		}
-		else
-			_stock[i] = nullptr;
-	}
 	_name = src._name;
 	_idx = src._idx;
+	for (uint i = 0; i < 4; i++)
+		delete _stock[i];
 	for (uint i = 0; i < 4; i++)
 	{
 		if(src._stock[i])
@@ -93,16 +77,17 @@ void Character::equip(AMateria* m)
 			{
 				_stock[i] = m;
 				_idx++;
+				cout << "CHARACTER " << _name << " has recovered " << m->getType() << endl;
+				break;
 			}
 		}
-		cout << "CHARACTER " << _name << " has recovered " << m->getType() << endl;
 	}
 	else
 		cout << "CHARACTER OH NO" << _name << " couldn't recover " << m->getType() << endl;
 }
 void Character::unequip(int idx)
 {
-	if ((int)_idx >= idx)
+	if (idx >= 0 && idx < 4)
 	{
 		_stock[idx] = nullptr;
 		_idx--;
@@ -114,13 +99,8 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter& target)
 {
-	if (idx <= 3 && idx >= 0)
-	{
-		if (!_stock[idx])
-			cout << "CHARACTER " << _name << " no items to use in stock " << idx << endl;
-		else
-			_stock[idx]->use(target);
-	}
+	if (idx < 4 && idx >= 0 && _stock[idx] != nullptr)
+		_stock[idx]->use(target);
 	else
 		cout << "CHARACTER " << _name << " can't use this item" << endl;
 }
