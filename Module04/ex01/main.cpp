@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:42:53 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/23 13:06:45 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/24 21:19:07 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,41 @@ int main()
 	cout <<CYA "----- MAIN EX00 -----" << endl;
 
 	cout << CYA "----- CONSTRUCTOR -----" WHT << endl;
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	const WrongAnimal* x = new WrongAnimal();
-	const WrongAnimal* z = new WrongCat();
+	// const Animal* meta = new Animal();
+	const Animal* dogi = new Dog();
+	const Animal* cati = new Cat();
+	const WrongAnimal* wrongA = new WrongAnimal();
+	const WrongAnimal* wrongC = new WrongCat();
+
 	cout << endl;
 
 	cout << CYA "----- GET -----" WHT << endl;
-	cout << "j: " << j->getType() << endl;
-	cout << "i: " << i->getType() << endl;
+	// cout << "meta: " << meta->getType() << endl;
+	cout << "dogi: " << dogi->getType() << endl;
+	cout << "cati: " << cati->getType() << endl;
 	cout << endl;
-	cout << "x: " << x->getType() << endl;
-	cout << "z: " << z->getType() << endl;
+	cout << "wrongA: " << wrongA->getType() << endl;
+	cout << "wrongC: " << wrongC->getType() << endl;
 	cout << endl;
 
 	cout << CYA "----- SOUND -----" WHT<< endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
+	// meta->makeSound();
+	cati->makeSound();
+	dogi->makeSound();
 	cout << endl;
-	x->makeSound();
-	z->makeSound();
+	wrongA->makeSound();
+	wrongC->makeSound();
 	cout << endl;
 
 	cout << CYA "----- DESTRUCTOR -----" WHT << endl;
-	delete j;
-	delete i;
+	// delete meta;
+	delete dogi;
+	delete cati;
 	cout << endl;
-	delete x;
-	delete z;
+	delete wrongA;
+	delete wrongC;
 
-	cout <<CYA "----- MAIN EX01 -----" << endl;
+	cout << endl <<CYA "----- MAIN EX01 -----" << endl;
 
 	cout << CYA "----- CONSTRUCTOR -----" WHT << endl;
 	Animal *tabAnimal[10];
@@ -94,13 +99,15 @@ int main()
 	for (int i = 0; i < 10; i++)
 		delete tabAnimal[i];
 
-
+	cout << CYA "----- DEEP COPY-----" WHT << endl;
 	Cat original;
 	Cat *copy = new Cat(original);
 	copy->setIdea("salut", 1);
 
 	cout << original.getIdea(1) << endl;
 	cout << copy->getIdea(1) << endl;
+
+	delete copy;
 
 	return 0;
 }

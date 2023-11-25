@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:42:53 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/24 21:00:54 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/24 21:19:17 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int main()
 
 	cout << CYA "----- SOUND -----" WHT<< endl;
 	meta->makeSound();
-	cati->makeSound(); //will output the cat sound!
+	cati->makeSound();
 	dogi->makeSound();
 	cout << endl;
 	wrongA->makeSound();

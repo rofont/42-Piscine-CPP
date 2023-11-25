@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 08:46:05 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/23 12:00:40 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/24 21:13:48 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ Brain::Brain(void)
 
 Brain::Brain(Brain &copy)
 {
-	for (int i = 0; i < 100; i++)
-		_ideas[i] = copy._ideas[i];
+	*this = copy;
 	cout << "BRAIN Copy constructor" << endl;
 }
 
@@ -36,8 +35,11 @@ Brain::~Brain(void)
 
 Brain &Brain::operator=(Brain const &src)
 {
-	for (int i = 0; i < 100; i++)
-		_ideas[i] = src._ideas[i];
+	if (this != &src)
+	{
+		for (int i = 0; i < 100; i++)
+			_ideas[i] = src._ideas[i];
+	}
 	cout << "BRAIN Assignation operator" << endl;
 	return *this;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:01:54 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/23 13:04:20 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/24 21:24:05 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ Cat::Cat(void) : Animal()
 
 Cat::Cat(Cat &copy)
 {
-	_type = copy._type;
-	_CatBrain = new Brain();
+	*this = copy;
 	cout << "CAT " <<  _type << " Copy constructor" << endl;
 }
 
@@ -37,10 +36,14 @@ Cat::~Cat(void)
 
 Cat &Cat::operator=(Cat const &src)
 {
-	_type = src._type;
-	_CatBrain = new Brain();
-	return *this;
+	if (this != &src)
+	{
+		delete _CatBrain;
+		Animal::operator=(src);
+		_CatBrain = new Brain(*src._CatBrain);
+	}
 	cout << "CAT " <<  _type << " Assignation operator" << endl;
+	return *this;
 }
 
 const string &Cat::getType(void) const

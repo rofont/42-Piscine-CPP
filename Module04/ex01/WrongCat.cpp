@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:55:41 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/20 14:48:24 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/24 21:12:45 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,11 @@ WrongCat::~WrongCat(void)
 
 WrongCat &WrongCat::operator=(WrongCat const &src)
 {
-	_typeWrong = src._typeWrong;
-	return *this;
+	if (this != &src)
+		WrongAnimal::operator=(src);
 	cout << "WRONG_CAT " <<  _typeWrong << " Assignation operator" << endl;
+	return *this;
 }
-
-// string WrongCat::getTypeWrong(void) const
-// {
-// 	return _typeWrong;
-// }
 
 void WrongCat::makeSound(void) const
 {

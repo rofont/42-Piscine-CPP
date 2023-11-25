@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:01:54 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/23 12:10:51 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/24 21:24:33 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ Dog::Dog(void) : Animal()
 
 Dog::Dog(Dog &copy)
 {
-	_type = copy._type;
-	for(int i = 0; i < 100; i++)
-		_DogBrain[i] = copy._DogBrain[i];
-
+	*this = copy;
 	cout << "DOG " <<  _type << " Copy constructor" << endl;
 }
 
@@ -39,9 +36,12 @@ Dog::~Dog(void)
 
 Dog &Dog::operator=(Dog const &src)
 {
-	_type = src._type;
-	for(int i = 0; i < 100; i++)
-		_DogBrain[i] = src._DogBrain[i];
+	if (this != &src)
+	{
+		delete _DogBrain;
+		Animal::operator=(src);
+		_DogBrain = new Brain(*src._DogBrain);
+	}
 	return *this;
 	cout << "DOG " <<  _type << " Assignation operator" << endl;
 }
