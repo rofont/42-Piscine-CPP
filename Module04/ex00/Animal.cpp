@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:43:02 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/23 11:51:03 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/24 20:58:53 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ Animal::~Animal(void)
 
 Animal &Animal::operator=(Animal const &src)
 {
-	_type = src._type;
-	return *this;
+	if(this != &src)
+		this->_type = src._type;
 	cout << "ANIMAL " <<  _type << " Assignation operator" << endl;
+	return *this;
 }
 
 const string &Animal::getType(void) const

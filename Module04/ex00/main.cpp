@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:42:53 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/21 14:44:13 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/24 21:00:54 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,38 @@ int main()
 {
 	cout << CYA "----- CONSTRUCTOR -----" WHT << endl;
 	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	const WrongAnimal* x = new WrongAnimal();
-	const WrongAnimal* z = new WrongCat();
+	const Animal* dogi = new Dog();
+	const Animal* cati = new Cat();
+	const WrongAnimal* wrongA = new WrongAnimal();
+	const WrongAnimal* wrongC = new WrongCat();
+
 	cout << endl;
 
 	cout << CYA "----- GET -----" WHT << endl;
 	cout << "meta: " << meta->getType() << endl;
-	cout << "j: " << j->getType() << endl;
-	cout << "i: " << i->getType() << endl;
+	cout << "dogi: " << dogi->getType() << endl;
+	cout << "cati: " << cati->getType() << endl;
 	cout << endl;
-	cout << "x: " << x->getType() << endl;
-	cout << "z: " << z->getType() << endl;
+	cout << "wrongA: " << wrongA->getType() << endl;
+	cout << "wrongC: " << wrongC->getType() << endl;
 	cout << endl;
 
 	cout << CYA "----- SOUND -----" WHT<< endl;
 	meta->makeSound();
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
+	cati->makeSound(); //will output the cat sound!
+	dogi->makeSound();
 	cout << endl;
-	x->makeSound();
-	z->makeSound();
+	wrongA->makeSound();
+	wrongC->makeSound();
 	cout << endl;
 
 	cout << CYA "----- DESTRUCTOR -----" WHT << endl;
 	delete meta;
-	delete j;
-	delete i;
+	delete dogi;
+	delete cati;
 	cout << endl;
-	delete x;
-	delete z;
+	delete wrongA;
+	delete wrongC;
 
 	return 0;
 }

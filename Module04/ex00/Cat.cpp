@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:01:54 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/23 11:50:52 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/24 20:52:48 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ Cat::~Cat(void)
 
 Cat &Cat::operator=(Cat const &src)
 {
-	_type = src._type;
-	return *this;
+	if(this != &src)
+		Animal::operator=(src);
 	cout << "CAT " <<  _type << " Assignation operator" << endl;
+	return *this;
 }
 
 const string &Cat::getType(void) const
