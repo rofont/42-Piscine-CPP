@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:01:54 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/24 21:24:05 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/27 11:57:50 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Cat::Cat(void) : Animal()
 	cout << "CAT " <<  _type << " Default constructor" << endl;
 }
 
-Cat::Cat(Cat &copy)
+Cat::Cat(Cat &copy) : _CatBrain(NULL)
 {
 	*this = copy;
 	cout << "CAT " <<  _type << " Copy constructor" << endl;

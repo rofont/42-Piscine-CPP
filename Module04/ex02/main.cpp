@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:42:53 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/24 21:19:07 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/27 12:00:13 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int main()
 	delete wrongA;
 	delete wrongC;
 
-	cout << endl <<CYA "----- MAIN EX01 -----" << endl;
+	cout << endl <<CYA "----- MAIN EX01/02 -----" << endl;
 
 	cout << CYA "----- CONSTRUCTOR -----" WHT << endl;
 	Animal *tabAnimal[10];

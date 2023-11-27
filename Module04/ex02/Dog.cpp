@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:01:54 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/24 21:24:33 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/27 11:59:08 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Dog::Dog(void) : Animal()
 	cout << "DOG " <<  _type << " Default constructor" << endl;
 }
 
-Dog::Dog(Dog &copy)
+Dog::Dog(Dog &copy) : _DogBrain(NULL)
 {
 	*this = copy;
 	cout << "DOG " <<  _type << " Copy constructor" << endl;
