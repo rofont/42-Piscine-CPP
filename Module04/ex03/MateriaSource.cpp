@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:47:55 by romain            #+#    #+#             */
-/*   Updated: 2023/11/26 22:08:34 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/27 10:41:13 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,13 @@ MateriaSource &MateriaSource::operator=(MateriaSource const &src)
 		for (int i = 0; i < 4; i++)
 			delete _tank[i];
 		for (int i = 0; i < 4; i++)
-			_tank[i] = src._tank[i];
+		for (int i = 0; i < 4; i++)
+		{
+			if (src._tank[i])
+				_tank[i] = src._tank[i]->clone();
+			else
+				_tank[i] = NULL;
+		}
 	}
 	return *this;
 }

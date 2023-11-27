@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 21:16:41 by romain            #+#    #+#             */
-/*   Updated: 2023/11/26 22:25:05 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/27 10:40:35 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,12 @@ Character &Character::operator=(Character const &src)
 			delete _stock[i];
 		_name = src._name;
 		for (int i = 0; i < 4; i++)
-			_stock[i] = src._stock[i]->clone();
+		{
+			if (src._stock[i])
+				_stock[i] = src._stock[i]->clone();
+			else
+				_stock[i] = NULL;
+		}
 	}
 	return *this;
 }
@@ -75,8 +80,7 @@ void Character::equip(AMateria* m)
 	{
 		if (!_stock[i])
 		{
-			_stock[i] = m->clone();
-			delete m;
+			_stock[i] = m;
 			cout << "CHARACTER EQUIP " << m->getType() << " has been equipped" << endl;
 			return ;
 		}
