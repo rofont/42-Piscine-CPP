@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 17:05:46 by romain            #+#    #+#             */
-/*   Updated: 2023/11/24 09:15:10 by rofontai         ###   ########.fr       */
+/*   Created: 2023/11/26 21:04:18 by romain            #+#    #+#             */
+/*   Updated: 2023/11/26 21:16:20 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
-#include "Character.hpp"
 
 using std::cout;
 using std::endl;
@@ -20,38 +19,32 @@ Cure::Cure(void) : AMateria("cure")
 {
 	cout << "CURE " << _type << " Default Constructor" << endl;
 }
-Cure::Cure(Cure &copy)
+
+Cure::Cure(Cure const &copy)
 {
-	_type = copy._type;
 	cout << "CURE " << _type << " Copy Constructor" << endl;
+	*this = copy;
 }
+
 Cure::~Cure(void)
 {
-	cout << "CURE " << _type << " Default Destructor" << endl;
+	cout << "CURE " << _type << " Destructor" << endl;
 }
 
 Cure &Cure::operator=(Cure const &src)
 {
-	if (this != &src)
-		AMateria::operator=(src);
 	cout << "CURE " << _type << " Assignation Operator" << endl;
+	if(this != &src)
+		AMateria::operator=(src);
 	return *this;
 }
 
-const std::string &Cure::getType(void) const
+AMateria *Cure::clone(void) const
 {
-	return _type;
+	cout << "CURE " << "has been cloned" << endl;
+	return new Cure();
 }
-
-AMateria* Cure::clone(void) const
-{
-	AMateria *CureClone = new Cure();
-	*CureClone = *this;
-	cout << "CURE " << getType() << " has been cloned" << endl;
-	return CureClone;
-}
-
 void Cure::use(ICharacter& target)
 {
-	cout << "* heals " << target.getName() << "'s wounds *" << endl;
+	cout << "* heals " << target.getName() << "’s wounds *" << endl;
 }

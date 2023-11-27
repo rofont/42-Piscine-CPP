@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 20:56:00 by romain            #+#    #+#             */
-/*   Updated: 2023/11/24 12:38:08 by rofontai         ###   ########.fr       */
+/*   Created: 2023/11/26 21:47:55 by romain            #+#    #+#             */
+/*   Updated: 2023/11/26 22:08:34 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,82 +15,59 @@
 using std::cout;
 using std::endl;
 
-MateriaSource::MateriaSource(void) : IMateriaSource(), _idxTank(0)
+MateriaSource::MateriaSource(void) : IMateriaSource()
 {
-	for (uint i = 0; i < 4; i++)
-		_tank[i] = nullptr;
-	cout << "MATERIASOURCE " << " Default Constructor" << endl;
+	cout << "MATERIA_SOURCE Default Constructor" << endl;
+	for (int i = 0; i < 4; i++)
+		_tank[i] = NULL;
 }
-
-MateriaSource::MateriaSource(MateriaSource &copy)
+MateriaSource::MateriaSource(MateriaSource const &copy)
 {
-	_idxTank = copy._idxTank;
-	for (uint i = 0; i < 4; i++)
-	{
-		if(copy._tank[i])
-			_tank[i] = copy._tank[i]->clone();
-		else
-			_tank[i] = nullptr;
-	}
-	cout << "MATERIASOURCE " << " Copy Constructor" << endl;
+	cout << "MATERIA_SOURCE Copy Constructor" << endl;
+	*this = copy;
 }
-
 MateriaSource::~MateriaSource(void)
 {
-	for (uint i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)
 		delete _tank[i];
-	cout << "MATERIASOURCE " << " Default Destructor" << endl;
 }
 
 MateriaSource &MateriaSource::operator=(MateriaSource const &src)
 {
-	_idxTank = src._idxTank;
-	for (uint i = 0; i < 4; i++)
-		delete _tank[i];
-	for (uint i = 0; i < 4; i++)
+	if (this != &src)
 	{
-		if(src._tank[i])
-			_tank[i] = src._tank[i]->clone();
-		else
-			_tank[i] = nullptr;
+		for (int i = 0; i < 4; i++)
+			delete _tank[i];
+		for (int i = 0; i < 4; i++)
+			_tank[i] = src._tank[i];
 	}
-	cout << "MATERIASOURCE " << " Assignation Operator" << endl;
 	return *this;
 }
 
 void MateriaSource::learnMateria(AMateria* materia)
 {
-	if (_idxTank < 4)
+	if (!materia)
 	{
-		for (uint i = 0; i < 4; i++)
+		cout << "LEARN_MATERIA doesn't exist" << endl;
+		return ;
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		if (!_tank[i])
 		{
-			if (_tank[i] == nullptr)
-			{
-				_tank[i] = materia;
-				cout << "MATERIASOURCE " << materia->getType() << "'s power has been learned" << endl;
-				break;
-			}
+			cout << "LEARN_MATERIA has been learned" << endl;
+			_tank[i] = materia;
+			return ;
 		}
 	}
-	else
-		cout << "MATERIASOURCE " << " It's not possible to learn " << materia->getType() << endl;
+	cout << "LEARN_MATERIA couldn't be learned" << endl;
 }
-
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-	AMateria *create = nullptr;
-	if (_idxTank < 4)
+	for (int i = 0; i < 4; i++)
 	{
-		for (uint i = 0; i < 4; i++)
-		{
-			if (_tank[i] != nullptr && _tank[i]->getType() == type)
-			{
-				create = _tank[i]->clone();
-				cout << "MATERIASOURCE " << type << " has been created" << endl;
-			}
-		}
+		if (_tank[i]->getType().compare(type) == 0)
+			return _tank[i]->clone();
 	}
-	else
-		cout << "MATERIASOURCE " << " It's not possible to create " << type << endl;
-	return create;
+	return 0;
 }

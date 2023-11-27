@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 16:56:54 by romain            #+#    #+#             */
-/*   Updated: 2023/11/24 09:04:57 by rofontai         ###   ########.fr       */
+/*   Created: 2023/11/26 20:38:57 by romain            #+#    #+#             */
+/*   Updated: 2023/11/26 21:10:47 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 using std::cout;
 using std::endl;
 
-
-AMateria::AMateria(void) : _type("No_Name")
+AMateria::AMateria(void) : _type("No_define")
 {
 	cout << "AMATERIA " << _type << " Default Constructor" << endl;
 }
@@ -26,26 +25,31 @@ AMateria::AMateria(std::string const & type) : _type(type)
 	cout << "AMATERIA " << _type << " Constructor" << endl;
 }
 
-AMateria::AMateria(AMateria &copy)
+AMateria::AMateria(AMateria const &copy)
 {
-	_type = copy._type;
-	cout << "AMATERIA " <<  _type << " Copy constructor" << endl;
+	cout << "AMATERIA " << _type << " Copy Constructor" << endl;
+	*this = copy;
 }
 
 AMateria::~AMateria(void)
 {
-	cout << "AMATERIA " << _type << " Default Destructor" << endl;
+	cout << "AMATERIA " << _type << " Destructor" << endl;
 }
 
 AMateria &AMateria::operator=(AMateria const &src)
 {
+	cout << "AMATERIA " << _type << " Assignation Operator" << endl;
 	if (this != &src)
 		_type = src._type;
-	cout << "AMATERIA " << _type << " Assignation Operator" << endl;
 	return *this;
 }
 
-std::string const & AMateria::getType() const
+std::string const &AMateria::getType() const //Returns the materia type
 {
 	return _type;
+}
+
+void AMateria::use(ICharacter& target)
+{
+	(void)target;
 }

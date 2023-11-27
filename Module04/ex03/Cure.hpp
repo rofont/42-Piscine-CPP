@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 17:05:40 by romain            #+#    #+#             */
-/*   Updated: 2023/11/24 11:36:04 by rofontai         ###   ########.fr       */
+/*   Created: 2023/11/26 21:03:31 by romain            #+#    #+#             */
+/*   Updated: 2023/11/26 22:05:39 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CURE_HPP
 # define CURE_HPP
 
-
 # include "AMateria.hpp"
+# include "ICharacter.hpp"
+
+class ICharacter;
 
 class Cure : public AMateria
 {
 	public:
 		Cure(void);
-		Cure(Cure &copy);
-		virtual~Cure(void);
+		Cure(Cure const &copy);
+		~Cure(void);
 
 		Cure &operator=(Cure const &src);
-
-		const std::string &getType(void) const;
-		AMateria* clone(void) const;
+		AMateria *clone(void) const;
 		void use(ICharacter& target);
 };
 

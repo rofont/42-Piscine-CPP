@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 16:49:09 by romain            #+#    #+#             */
-/*   Updated: 2023/11/24 11:52:51 by rofontai         ###   ########.fr       */
+/*   Created: 2023/11/26 20:34:27 by romain            #+#    #+#             */
+/*   Updated: 2023/11/26 22:12:43 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,26 @@
 //-----------------------------------------------------------------------------
 
 # include <iostream>
-# include "Character.hpp"
-# include "AMateria.hpp"
+# include <string>
+# include "ICharacter.hpp"
 
-class ICharacter;
+using std::string;
 
 class AMateria
 {
 	protected:
-		std::string _type;
+		string _type;
 
 	public:
 		AMateria(void);
 		AMateria(std::string const & type);
-		AMateria(AMateria &copy);
+		AMateria(AMateria const &copy);
 		virtual~AMateria(void);
 
 		AMateria &operator=(AMateria const &src);
-
-		std::string const & getType() const;
+		std::string const & getType() const; //Returns the materia type
 		virtual AMateria* clone() const = 0;
-		virtual void use(ICharacter& target) = 0;
+		virtual void use(ICharacter& target);
 };
 
 #endif

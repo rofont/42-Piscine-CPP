@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 19:14:25 by romain            #+#    #+#             */
-/*   Updated: 2023/11/24 12:11:35 by rofontai         ###   ########.fr       */
+/*   Created: 2023/11/26 21:16:41 by romain            #+#    #+#             */
+/*   Updated: 2023/11/26 22:25:05 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,92 +15,92 @@
 using std::cout;
 using std::endl;
 
-Character::Character(string const &name) : ICharacter()
+Character::Character(void) : ICharacter(), _name("No_Name")
 {
-	_name = name;
-	_idx = 0;
-	for (uint i = 0; i < 4; i++)
-		_stock[i] = nullptr;
 	cout << "CHARACTER " << _name << " Default Constructor" << endl;
+	for (int i = 0; i < 4; i++)
+		_stock [i] = NULL;
 }
 
-Character::Character(Character &copy)
+Character::Character(string name) : _name(name)
 {
-	_name = copy._name;
-	_idx = copy._idx;
-	for (uint i = 0; i < 4; i++)
-	{
-		if(copy._stock[i])
-			_stock[i] = copy._stock[i]->clone();
-		else
-			_stock[i] = nullptr;
-	}
+	cout << "CHARACTER " << _name << " Constructor" << endl;
+	for (int i = 0; i < 4; i++)
+		_stock [i] = NULL;
+}
+
+Character::Character(Character const &copy)
+{
 	cout << "CHARACTER " << _name << " Copy Constructor" << endl;
+	_name = copy._name;
+	for (int i = 0; i < 4; i++)
+		_stock [i] = copy._stock[i];
 }
 
 Character::~Character(void)
 {
-	for (uint i = 0; i < 4; i++)
+	cout << "CHARACTER " << _name << " Destructor" << endl;
+	for (int i = 0; i < 4; i++)
 		delete _stock[i];
-	cout << "CHARACTER " << _name << " Default Destructor" << endl;
 }
 
 Character &Character::operator=(Character const &src)
 {
-	_name = src._name;
-	_idx = src._idx;
-	for (uint i = 0; i < 4; i++)
-		delete _stock[i];
-	for (uint i = 0; i < 4; i++)
-	{
-		if(src._stock[i])
-			_stock[i] = src._stock[i]->clone();
-		else
-			_stock[i] = nullptr;
-	}
 	cout << "CHARACTER " << _name << " Assignation Operator" << endl;
+
+	if(this != &src)
+	{
+		for (int i = 0; i < 4; i++)
+			delete _stock[i];
+		_name = src._name;
+		for (int i = 0; i < 4; i++)
+			_stock[i] = src._stock[i]->clone();
+	}
 	return *this;
 }
 
-std::string const & Character::getName() const
+std::string const &Character::getName(void) const
 {
 	return _name;
 }
 
 void Character::equip(AMateria* m)
 {
-	if (_idx < 4)
+	if (!m)
 	{
-		for (int i = 0; i < 4; i++)
+		cout << "CHARACTER EQUIP " << m->getType() << " doesn't exist" << endl;
+		return ;
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		if (!_stock[i])
 		{
-			if (_stock[i] == nullptr)
-			{
-				_stock[i] = m;
-				_idx++;
-				cout << "CHARACTER " << _name << " has recovered " << m->getType() << endl;
-				break;
-			}
+			_stock[i] = m->clone();
+			delete m;
+			cout << "CHARACTER EQUIP " << m->getType() << " has been equipped" << endl;
+			return ;
 		}
 	}
-	else
-		cout << "CHARACTER OH NO" << _name << " couldn't recover " << m->getType() << endl;
-}
-void Character::unequip(int idx)
-{
-	if (idx >= 0 && idx < 4)
-	{
-		_stock[idx] = nullptr;
-		_idx--;
-		cout << "CHARACTER " << _name << " has removed " << _stock[idx]->getType() << endl;
-	}
-	else
-		cout << "CHARACTER OH NO " << _name << " couldn't remove " << _stock[idx]->getType() << endl;
+	cout << "CHARACTER EQUIP " << m->getType() << " couldn't be equipped" << endl;
+
 }
 
+void Character::unequip(int idx)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		if (i == idx && _stock[i])
+		{
+			cout << "CHARACTER UNEQUIP " << "Equipement" << idx << " has been unequipped" << endl;
+			_stock[i] = NULL;
+			return ;
+		}
+	}
+	cout << "CHARACTER UNEQUIP " << "Equipement" << idx << " couldn't be unequipped" << endl;
+}
 void Character::use(int idx, ICharacter& target)
 {
-	if (idx < 4 && idx >= 0 && _stock[idx] != nullptr)
+	if (idx < 4 && idx >= 0 && _stock[idx])
 		_stock[idx]->use(target);
-	else
-		cout << "CHARACTER " << _name << " can't use this item" << endl;
+	cout << "CHARACTER USE " << _name << " can't use this item" << endl;
 }
