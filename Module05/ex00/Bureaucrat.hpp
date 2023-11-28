@@ -3,15 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:49:38 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/27 15:07:29 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/28 06:27:08 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
+
+// COLORS----------------------------------------------------------------------
+# define BCK "\x1B[30m"
+# define RED "\x1B[31m"
+# define GRE "\x1B[32m"
+# define YEL "\x1B[33m"
+# define BLE "\x1B[34m"
+# define MAG "\x1B[35m"
+# define CYA "\x1B[36m"
+# define WHT "\x1B[37m"
+//-----------------------------------------------------------------------------
 
 # include <iostream>
 # include <string>
@@ -28,10 +39,13 @@ class Bureaucrat
 		~Bureaucrat(void);
 
 		Bureaucrat				&operator=(Bureaucrat const &src);
+
 		const string			&getName(void) const;
 		const unsigned int		&getGrade(void) const;
+
 		void					increment(void);
 		void					decrement(void);
+
 		exception				GradeTooHighException(void);
 		exception				GradeTooLowException(void);
 

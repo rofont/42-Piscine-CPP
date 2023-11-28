@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:49:40 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/27 15:10:51 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/28 06:38:44 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ const unsigned int		&Bureaucrat::getGrade(void) const
 
 void			Bureaucrat::increment(void)
 {
-	if(_grade < 1)
+	if(_grade <= 1)
 		_grade--;
 	else
 		throw GradeTooHighException();
@@ -64,7 +64,7 @@ void			Bureaucrat::increment(void)
 void			Bureaucrat::decrement(void)
 {
 
-	if(_grade > 150)
+	if(_grade >= 150)
 			_grade++;
 		else
 			throw GradeTooLowException();
