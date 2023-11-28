@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:45:21 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/28 06:30:04 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/28 11:41:51 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,55 @@
 
 using std::cout;
 using std::endl;
+using std::cerr;
 
 int main ()
 {
 	cout <<CYA "----- TEST -----" WHT<< endl << endl;
 
-	cout <<CYA "----- CONSTRUCTOR -----" WHT<< endl << endl;
+	cout <<CYA "----- TOO LOW -----" WHT<< endl << endl;
+	try
+	{
+		Bureaucrat Paul("Paul", 145);
+		cout << Paul << endl;
 
-	Bureaucrat Paul("Paul", 42);
-	Bureaucrat Pierre("Pierre", 10);
-	Bureaucrat Jean(Paul);
-	Bureaucrat Louis("Louis", 0);
-	Bureaucrat Michel("Michel", 151);
+		for (int i = 0; i < 6; i++)
+		{
+			Paul.decrement();
+			cout << Paul << " i = " << i << endl;
+		}
+	}
+	catch (std::exception & e)
+	{
+		cerr << e.what() << endl;
+	}
 
-	cout << Louis << endl;
-	cout << Michel << endl;
-	cout << Paul << endl;
-	Paul = Pierre;
-	cout << Paul << endl;
-	cout << Jean << endl;
-	cout << Pierre << endl;
+	cout << endl <<CYA "----- TOO HIGH -----" WHT<< endl << endl;
+	try
+	{
+		Bureaucrat Pierre("Pierre", 5);
+		cout << Pierre << endl;
 
-	cout <<CYA "----- CONSTRUCTOR -----" WHT<< endl << endl;
+		for (int i = 0; i < 5; i++)
+		{
+			Pierre.increment();
+			cout << Pierre << " i = " << i << endl;
+		}
+	}
+	catch (std::exception & e)
+	{
+		cerr << e.what() << endl;
+	}
+
+	cout << endl <<CYA "----- GRADE OK -----" WHT<< endl << endl;
+
+	Bureaucrat Jacky("Jacky", 50);
+	cout << Jacky << endl;
+	Bureaucrat Michelle("Michelle", 100);
+	cout << Michelle << endl;
+
+	Michelle = Jacky;
+	cout << Michelle << endl;
 
 	return 0;
 }
