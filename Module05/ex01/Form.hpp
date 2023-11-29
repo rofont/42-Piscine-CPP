@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 21:13:56 by romain            #+#    #+#             */
-/*   Updated: 2023/11/28 21:25:33 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/29 08:40:08 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FORM_HPP
 
 # include <iostream>
+# include "Bureaucrat.hpp"
 
 using std::string;
 using std::ostream;
@@ -24,8 +25,8 @@ class Bureaucrat;
 class Form
 {
 	public:
-		Form(void);
-		Form(Form const &copy);
+		Form(string name, unsigned int sign, unsigned int exec);
+		Form(Form &copy);
 		~Form(void);
 
 		Form	&operator=(Form const &src);
@@ -41,10 +42,12 @@ class Form
 		exception	GradeTooLowException(void);
 
 	private:
-		string			_name;
-		bool			_signed;
-		unsigned int	_gradeSign;
-		unsigned int	_gradeExec;
+		Form(void);
+
+		string const			_name;
+		bool					_signed;
+		unsigned int const		_gradeSign;
+		unsigned int const		_gradeExec;
 };
 
 ostream &operator<<(ostream &out, Form const &form);

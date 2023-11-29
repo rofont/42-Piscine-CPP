@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:49:38 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/28 06:27:08 by romain           ###   ########.fr       */
+/*   Updated: 2023/11/29 10:26:36 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@
 
 # include <iostream>
 # include <string>
+# include "Form.hpp"
 
 using std::string;
 using std::ostream;
 using std::exception;
 
+class Form;
 class Bureaucrat
 {
 	public:
@@ -48,6 +50,8 @@ class Bureaucrat
 
 		exception				GradeTooHighException(void);
 		exception				GradeTooLowException(void);
+
+		void					signForm(Form &form);
 
 
 	private:

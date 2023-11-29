@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:49:40 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/28 11:27:46 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:41:12 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,15 @@ Bureaucrat::Bureaucrat(string const name, unsigned int grade) : _name(name), _gr
 {
 	cout << "BUREAUCRAT Constructor" << endl;
 	if(grade < 1)
+	{
+		cout << _name << " ";
 		throw Bureaucrat::GradeTooHighException();
+	}
 	else if (grade > 150)
+	{
+		cout << _name << " ";
 		throw Bureaucrat::GradeTooLowException();
+	}
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &copy)
@@ -35,7 +41,7 @@ Bureaucrat::~Bureaucrat(void)
 	cout << "BUREAUCRAT Destructor" << endl;
 }
 
-Bureaucrat		&Bureaucrat::operator=(Bureaucrat const &src)
+Bureaucrat	&Bureaucrat::operator=(Bureaucrat const &src)
 {
 	cout << "BUREAUCRAT Assigantion Operator" << endl;
 	if(this != &src)
@@ -48,12 +54,12 @@ const string	&Bureaucrat::getName(void) const
 	return _name;
 }
 
-const unsigned int		&Bureaucrat::getGrade(void) const
+const unsigned int	&Bureaucrat::getGrade(void) const
 {
 	return _grade;
 }
 
-void			Bureaucrat::increment(void)
+void	Bureaucrat::increment(void)
 {
 	if(_grade > 1)
 		_grade--;
@@ -61,7 +67,7 @@ void			Bureaucrat::increment(void)
 		throw GradeTooHighException();
 }
 
-void			Bureaucrat::decrement(void)
+void	Bureaucrat::decrement(void)
 {
 
 	if(_grade < 150)
@@ -78,6 +84,20 @@ exception		Bureaucrat::GradeTooLowException(void)
 {
 	throw std::invalid_argument("Grade Too Low");
 }
+
+void	Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		cout << _name << " signed " << form.getNameForm() << endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cerr << _name << " couldn't sign "<< form.getNameForm() << " because " << e.what() << endl;
+	}
+}
+
 
 ostream &operator<<(ostream &out, Bureaucrat const &bureau)
 {
