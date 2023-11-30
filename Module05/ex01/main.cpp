@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 14:45:21 by rofontai          #+#    #+#             */
-/*   Updated: 2023/11/29 14:47:15 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:29:48 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,26 +76,13 @@ int main ()
 		cerr << e.what() << endl;
 	}
 
-	cout << endl <<CYA "----- TEST FORM TO HIGH -----" WHT<< endl << endl;
+	cout << endl <<CYA "----- TEST FORM TO LOW -----" WHT<< endl << endl;
 	try
 	{
 		Form test("TEST", 151, 150);
 		cout << test << endl;
 		test.beSigned(Jacky);
 		Jacky.signForm(test);
-	}
-	catch (std::exception & e)
-	{
-		cerr << e.what() << endl;
-	}
-
-	cout << endl <<CYA "----- TEST FORM TO HIGH -----" WHT<< endl << endl;
-	try
-	{
-		Form test("TEST", 0, 150);
-		cout << test << endl;
-		test.beSigned(Michelle);
-		Michelle.signForm(test);
 	}
 	catch (std::exception & e)
 	{
@@ -111,7 +98,9 @@ int main ()
 		cout << Good << endl;
 		Form Bad("BAD", 10, 100);
 		Bad = Good;
+		cout << Bad << endl;
 		Michelle.signForm(Bad);
+
 	}
 	catch (std::exception & e)
 	{
@@ -119,8 +108,5 @@ int main ()
 	}
 
 	cout << endl <<CYA "----- DESTRUCTOR -----" WHT<< endl << endl;
-	// cout << endl <<CYA "----- TEST FORM -----" WHT<< endl << endl;
-
-	// Form big("BIG", 5, 10);
 	return 0;
 }

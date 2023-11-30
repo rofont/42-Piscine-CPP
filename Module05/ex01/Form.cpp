@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 21:14:00 by romain            #+#    #+#             */
-/*   Updated: 2023/11/29 14:48:04 by rofontai         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:25:48 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ Form::~Form(void)
 	cout << "FORM Destructor" << endl;
 }
 
-Form	&Form::operator=(Form const &src) //TODO a travailer
+Form	&Form::operator=(Form const &src)
 {
 	cout << "FORM Assignation Operator" << endl;
 	if (this != &src)
-		*this = src;
+		_signed = src._signed;
 	return *this;
 }
 
@@ -65,7 +65,7 @@ void	Form::beSigned(Bureaucrat &bureau)
 {
 	if ((bureau.getGrade() <= _gradeSign) && _signed == false)
 	{
-		cout << "FORM " << _name << " has been signed by " << bureau.getName() << endl;
+		// cout << "FORM " << _name << " has been signed by " << bureau.getName() << endl;
 		_signed = true;
 	}
 	else if ((bureau.getGrade() <= _gradeSign) && _signed == true)
