@@ -6,13 +6,14 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:32:37 by romain            #+#    #+#             */
-/*   Updated: 2023/12/28 11:46:53 by romain           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:54:30 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 using std::exception;
 using std::cout;
@@ -121,8 +122,26 @@ int main(void)
 		cout << e.what() << endl;
 	}
 
-
-
+	printTitle("SHRUBBERY CREATION FORM");
+	ShrubberyCreationForm scf("Rudolph");
+	try {
+		Bessie.executeForm(scf);
+	}
+	catch (exception &e) {
+		cout << e.what() << endl;
+	}
+	try {
+		Aline.signForm(scf);
+	}
+	catch (exception &e) {
+		cout << e.what() << endl;
+	}
+	try {
+		Fabrice.executeForm(scf);
+	}
+	catch (exception &e) {
+		cout << e.what() << endl;
+	}
 
 	printTitle("DESTRUCTOR");
 	return 0;

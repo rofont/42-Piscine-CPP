@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 10:16:03 by romain            #+#    #+#             */
-/*   Updated: 2023/12/28 11:45:41 by romain           ###   ########.fr       */
+/*   Updated: 2023/12/28 16:51:01 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	RobotomyRequestForm::beExecute(Bureaucrat const &bureau) const
 		throw AForm::NotSignedException();
 	else
 	{
+		cout << bureau.getName() << " executed " << getNameForm() << endl;
 		std::srand(std::time(0));
 		int snooze = std::rand();
 		if (snooze %2 == 0)
