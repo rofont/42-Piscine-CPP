@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 21:14:00 by romain            #+#    #+#             */
-/*   Updated: 2023/12/27 16:27:12 by romain           ###   ########.fr       */
+/*   Updated: 2023/12/28 11:31:47 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	AForm::beSigned(Bureaucrat &bureau)
 	else if ((bureau.getGrade() <= _gradeSign) && _signed == true)
 		throw std::invalid_argument("This form is already signed");
 	else
-		throw AForm::GradeTooHighException();
+		throw AForm::GradeTooLowException();
 
 }
 

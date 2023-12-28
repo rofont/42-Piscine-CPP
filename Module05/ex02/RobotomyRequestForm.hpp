@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 15:34:07 by romain            #+#    #+#             */
-/*   Updated: 2023/12/28 10:48:46 by romain           ###   ########.fr       */
+/*   Created: 2023/12/28 10:16:08 by romain            #+#    #+#             */
+/*   Updated: 2023/12/28 10:49:22 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-# define PRESIDENTIALPARDONFORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 
 # include "AForm.hpp"
 
-# define PPF_SIGN 25
-# define PPF_EXEC 5
+# define RR_SIGN 72
+# define RR_EXEC 45
 
-class PresidentialPardonForm : public AForm
+class RobotomyRequestForm : public AForm
 {
 	private:
 		string _target;
-	public:
-		PresidentialPardonForm(string target);
-		PresidentialPardonForm(PresidentialPardonForm &copy);
-		~PresidentialPardonForm(void);
 
-		PresidentialPardonForm &operator=(PresidentialPardonForm const &src);
+	public:
+		RobotomyRequestForm(string target);
+		RobotomyRequestForm(RobotomyRequestForm & copy);
+		~RobotomyRequestForm(void);
+
+		RobotomyRequestForm &operator=(RobotomyRequestForm const &src);
 
 		void	beExecute(Bureaucrat const &bureau) const;
+
 };
 
 #endif

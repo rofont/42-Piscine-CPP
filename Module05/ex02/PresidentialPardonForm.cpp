@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 15:34:03 by romain            #+#    #+#             */
-/*   Updated: 2023/12/27 16:25:12 by romain           ###   ########.fr       */
+/*   Updated: 2023/12/28 11:29:59 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,15 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm
 	return *this;
 }
 
-void	PresidentialPardonForm::beExecute(Bureaucrat &bureau) const
+void	PresidentialPardonForm::beExecute(Bureaucrat const &bureau) const
 {
 	if (PPF_EXEC < bureau.getGrade())
 		throw AForm::GradeTooLowException();
 	else if (!getSigned())
 		throw AForm::NotSignedException();
 	else
+	{
+		cout << bureau.getName() << " executed " << getNameForm() << endl;
 		cout << _target << " has been pardonned by Zaphod Beeblebrox" << endl;
+	}
 }

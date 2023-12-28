@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:49:38 by rofontai          #+#    #+#             */
-/*   Updated: 2023/12/27 15:22:57 by romain           ###   ########.fr       */
+/*   Updated: 2023/12/28 11:18:43 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 
 # include <iostream>
 # include <string>
-# include "Form.hpp"
+# include "AForm.hpp"
 
 using std::string;
 using std::ostream;
 using std::exception;
 
-class Form;
+class AForm;
 class Bureaucrat
 {
 	public:
@@ -51,7 +51,8 @@ class Bureaucrat
 		exception				GradeTooHighException(void);
 		exception				GradeTooLowException(void);
 
-		void					signForm(Form &form);
+		void					signForm(AForm &form);
+		void					executeForm(AForm &form);
 
 
 	private:
