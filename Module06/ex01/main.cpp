@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 20:07:14 by romain            #+#    #+#             */
-/*   Updated: 2024/01/09 20:49:26 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/10 08:48:19 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ typedef struct data
 	int i;
 	std::string str;
 }				Data;
-
-
 
 uintptr_t	serialize(Data *ptr) {
 	return reinterpret_cast<uintptr_t>(ptr);
