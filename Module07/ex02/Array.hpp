@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Whatever.hpp                                       :+:      :+:    :+:   */
+/*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 20:41:57 by romain            #+#    #+#             */
-/*   Updated: 2024/01/11 09:42:28 by rofontai         ###   ########.fr       */
+/*   Created: 2024/01/11 11:09:45 by rofontai          #+#    #+#             */
+/*   Updated: 2024/01/11 15:43:27 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+#ifndef ARRAY_HPP
+# define ARRAY_HPP
 
 // COLORS----------------------------------------------------------------------
 # define BCK "\x1B[30m"
@@ -22,28 +22,31 @@
 # define MAG "\x1B[35m"
 # define CYA "\x1B[36m"
 # define WHT "\x1B[37m"
-//-----------------------------------------------------------------------------
-
+//------------------------------------------------------------------------------
 
 # include <iostream>
 
-template <typename T>
-void	swap(T &a, T &b) {
-	T temp;
+template < typename T>
+class Array {
+	public:
+		Array(void);
+		//créer un tableau vide;
+		Array(unsigned int n);
+		// créer un tableau de n case;
+		Array(Array const &copy);
+		//constructeur par recopie;
+		~Array(void);
 
-	temp = a;
-	a = b;
-	b = temp;
-}
+		Array	&operator=(Array const &src);
+		T	&operator[](int &id) const;
 
-template <typename T>
-T	min(T &a, T &b) {
-	return (a >= b ? b : a);
-}
+		unsigned int	size(void) const;
+		//retourne le nombre d'element dans le tableau
 
-template <typename T>
-T	max(T &a, T &b) {
-	return (a <= b ? b : a);
-}
+	private:
+		unsigned int _n;
+		T *_elements;
+};
 
+# include "Array.tpp"
 #endif

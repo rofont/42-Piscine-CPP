@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Whatever.hpp                                       :+:      :+:    :+:   */
+/*   Iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 20:41:57 by romain            #+#    #+#             */
-/*   Updated: 2024/01/11 09:42:28 by rofontai         ###   ########.fr       */
+/*   Created: 2024/01/11 09:28:57 by rofontai          #+#    #+#             */
+/*   Updated: 2024/01/11 10:49:07 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+#ifndef ITER_HPP
+# define ITER_HPP
 
 // COLORS----------------------------------------------------------------------
 # define BCK "\x1B[30m"
@@ -22,28 +22,25 @@
 # define MAG "\x1B[35m"
 # define CYA "\x1B[36m"
 # define WHT "\x1B[37m"
-//-----------------------------------------------------------------------------
-
+//------------------------------------------------------------------------------
 
 # include <iostream>
 
 template <typename T>
-void	swap(T &a, T &b) {
-	T temp;
-
-	temp = a;
-	a = b;
-	b = temp;
+void	Iter(T *tab, size_t len, void(*fct)(T &value)) {
+	for (size_t i = 0; i < len; i++) {
+		fct(tab[i]);
+	}
 }
 
 template <typename T>
-T	min(T &a, T &b) {
-	return (a >= b ? b : a);
+void	add(T &a) {
+	a++;
 }
 
 template <typename T>
-T	max(T &a, T &b) {
-	return (a <= b ? b : a);
+void	toLower(T &a) {
+	a = a + " est tres beau";
 }
 
 #endif
