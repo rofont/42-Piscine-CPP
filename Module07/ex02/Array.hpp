@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:09:45 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/11 21:12:22 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/12 11:30:51 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class Array {
 		~Array(void);
 
 		Array	&operator=(Array const &src);
-		T	&operator[](unsigned int &id) const;
+		T	&operator[](int id) const;
 
 		unsigned int	size(void) const;
 

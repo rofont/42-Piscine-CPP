@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   Array.tpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 13:06:07 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/11 21:24:11 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/12 11:31:34 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
+
 template <typename T>
 Array<T>::Array(void) : _n(0), _elements(NULL) {}
 
@@ -42,8 +43,8 @@ Array<T>	&Array<T>::operator=(Array const &src) {
 }
 
 template <typename T>
-T	&Array<T>::operator[](unsigned int &id) const {
-	if (id > _n)
+T	&Array<T>::operator[](int id) const {
+	if (id > static_cast<int>(_n) || id < 0)
 		throw std::out_of_range("Index out of range");
 	return _elements[id];
 }
