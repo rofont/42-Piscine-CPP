@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:35:14 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/18 22:27:26 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/19 15:38:34 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,49 @@ void	Span::addNumber(int nbAdd) {
 	}
 }
 
-int	Span::getNuumberVec(int id) const {
+int	Span::getNumberVec(int id) const {
 	return _tab[id];
+}
+
+void	Span::fillSpanRandom(size_t nb) {
+	srand(unsigned (std::time(0)));
+	if (nb > this->_n)
+		throw std::out_of_range("Your fill It's not possible for me");
+	else {
+		for (size_t i = 0; i < nb; i++)
+			this->addNumber(rand()%100);
+	}
+}
+
+int	Span::longestSpan(void) const {
+	if (this->_tab.size() < 2)
+		throw std::invalid_argument("Span does not have enough number for this comparison");
+	else {
+		int max = *std::max_element(this->_tab.begin(), this->_tab.end());
+		std::cout << "max = " << max << std::endl;
+		int min = *std::min_element(this->_tab.begin(), this->_tab.end());
+		std::cout << "min = " << min << std::endl;
+		return max - min;
+	}
+}
+
+int	Span::shortestSpan(void) {
+	if (this->_tab.size() < 2)
+		throw std::invalid_argument("Span does not have enough number for this comparison");
+	else {
+		std::sort(this->_tab.begin(), this->_tab.end());
+		int result = std::numeric_limits<int>::max();
+		for (size_t i = 1; i < this->_tab.size(); i++) {
+			int diff = this->_tab[i] - this->_tab[i - 1];
+			if(diff < result)
+				result = diff;
+		}
+		return result;
+	}
+}
+
+
+void	Span::filladdNumber(ITERATOR start, ITERATOR end) {
+	for (ITERATOR it = start; it < end; ++it)
+		this->addNumber(*it);
 }

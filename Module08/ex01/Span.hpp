@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:29:33 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/18 22:09:27 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/19 15:47:37 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 
 # include <iostream>
 # include <vector>
+# include <algorithm>
+# include <ctime>
+# include <cstdlib>
+# include <limits>
+
+# define ITERATOR std::vector<int>::iterator
+# define NB 10000
+
 
 class Span {
 
@@ -36,7 +44,12 @@ class Span {
 
 		Span	&operator=(Span const &src);
 		void	addNumber(int nbAdd);
-		int	getNuumberVec(int id) const;
+		void	filladdNumber(ITERATOR start, ITERATOR end);
+		int		getNumberVec(int id) const;
+		int		shortestSpan(void);
+		int		longestSpan(void) const;
+		void	fillSpanRandom(size_t nb);
+
 
 
 	private:
