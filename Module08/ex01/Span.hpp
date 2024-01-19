@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:29:33 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/15 15:08:05 by rofontai         ###   ########.fr       */
+/*   Updated: 2024/01/18 22:09:27 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ class Span {
 
 		Span	&operator=(Span const &src);
 		void	addNumber(int nbAdd);
-		
+		int	getNuumberVec(int id) const;
+
 
 	private:
 		Span(void);
