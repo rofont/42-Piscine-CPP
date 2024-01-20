@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:35:14 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/19 15:38:34 by rofontai         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:52:21 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Span::Span(unsigned int nb) : _n(nb), _tab(0) {
 	// std::cout <<YEL "Default Constructor" WHT<< std::endl;
 }
 
-Span::Span(Span &copy) : _n(copy._n), _tab(copy._tab) {
+Span::Span(Span const &copy) : _n(copy._n), _tab(copy._tab) {
 	// std::cout <<YEL "Copy Constructor" WHT<< std::endl;
 }
 
@@ -27,7 +27,7 @@ Span::~Span(void) {
 Span &Span::operator=(Span const &src) {
 	if (this != &src) {
 		*this = src;
-	}
+ 	}
 	return *this;
 }
 
@@ -46,16 +46,16 @@ int	Span::getNumberVec(int id) const {
 void	Span::fillSpanRandom(size_t nb) {
 	srand(unsigned (std::time(0)));
 	if (nb > this->_n)
-		throw std::out_of_range("Your fill It's not possible for me");
+		throw std::out_of_range("I can't do what you're asking me to do");
 	else {
 		for (size_t i = 0; i < nb; i++)
-			this->addNumber(rand()%100);
+			this->addNumber(rand()%1000);
 	}
 }
 
 int	Span::longestSpan(void) const {
 	if (this->_tab.size() < 2)
-		throw std::invalid_argument("Span does not have enough number for this comparison");
+		throw std::invalid_argument("Span doesn't have enough numbers to find the longest gap");
 	else {
 		int max = *std::max_element(this->_tab.begin(), this->_tab.end());
 		std::cout << "max = " << max << std::endl;
@@ -67,7 +67,7 @@ int	Span::longestSpan(void) const {
 
 int	Span::shortestSpan(void) {
 	if (this->_tab.size() < 2)
-		throw std::invalid_argument("Span does not have enough number for this comparison");
+		throw std::invalid_argument("Span does not have enough numbers to find the shortest gap");
 	else {
 		std::sort(this->_tab.begin(), this->_tab.end());
 		int result = std::numeric_limits<int>::max();
@@ -80,8 +80,18 @@ int	Span::shortestSpan(void) {
 	}
 }
 
+void	Span::filladdNumber(std::vector<int>::iterator start, std::vector<int>::iterator end) {
+	for (std::vector<int>::iterator it = start; it < end; ++it) {
+		try {
+			this->addNumber(*it);
+		}
+		catch (std::exception &e) {
+			throw ;
+		}
+	}
+}
 
-void	Span::filladdNumber(ITERATOR start, ITERATOR end) {
-	for (ITERATOR it = start; it < end; ++it)
-		this->addNumber(*it);
+void	Span::printSpan(void) const {
+	for (size_t i = 0; i < this->_n; i++)
+					std::cout << i << " = " << this->getNumberVec(i) << std::endl;
 }

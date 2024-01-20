@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:29:33 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/19 15:47:37 by rofontai         ###   ########.fr       */
+/*   Updated: 2024/01/19 20:50:51 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,24 @@
 # include <cstdlib>
 # include <limits>
 
-# define ITERATOR std::vector<int>::iterator
-# define NB 10000
+# define NB 10
 
 
 class Span {
 
 	public:
 		Span(unsigned int nb);
-		Span(Span &copy);
+		Span(Span const &copy);
 		~Span(void);
 
 		Span	&operator=(Span const &src);
 		void	addNumber(int nbAdd);
-		void	filladdNumber(ITERATOR start, ITERATOR end);
+		void	filladdNumber(std::vector<int>::iterator start, std::vector<int>::iterator end);
 		int		getNumberVec(int id) const;
 		int		shortestSpan(void);
 		int		longestSpan(void) const;
 		void	fillSpanRandom(size_t nb);
-
+		void	printSpan(void) const;
 
 
 	private:

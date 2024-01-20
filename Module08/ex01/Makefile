@@ -6,7 +6,7 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2024/01/18 22:10:41 by romain           ###   ########.fr        #
+#    Updated: 2024/01/19 20:40:02 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,12 @@
 NAME	= Easyfind
 
 CC		= c++
-CFLAGS	= -g -Wall -Wextra -Werror -std=c++98
+CFLAGS	= -g -Wall -Wextra -Werror -std=c++11
 
 SRC		= main.cpp		\
 			Span.cpp	\
 
-INCLUDE	= Span.hpp
+HEADER	= Span.hpp
 
 OBJ_DIR	= ./obj
 OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
@@ -43,7 +43,7 @@ $(OBJ_DIR)/%.o	: %.cpp
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$GCompilation : $Z $(notdir $<)"$W
 
-$(NAME)	:  $(OBJ_DIR) $(OBJ)
+$(NAME)	:  $(OBJ_DIR) $(OBJ) $(HEADER)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 $(OBJ_DIR)	:
