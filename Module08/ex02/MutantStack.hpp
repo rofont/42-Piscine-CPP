@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/15 14:29:33 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/19 21:14:43 by romain           ###   ########.fr       */
+/*   Created: 2024/01/19 21:04:12 by romain            #+#    #+#             */
+/*   Updated: 2024/01/19 22:15:51 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-# define SPAN_HPP
+#ifndef MUTANTSTACK_HPP
+# define MUTANTSTACK_HPP
 
 // COLORS----------------------------------------------------------------------
 # define BCK "\x1B[30m"
@@ -24,37 +24,31 @@
 # define WHT "\x1B[37m"
 //------------------------------------------------------------------------------
 
-# include <iostream>
-# include <vector>
 # include <algorithm>
-# include <ctime>
-# include <cstdlib>
-# include <limits>
+# include <iostream>
+# include <stack>
+#include <deque>
 
-# define NB 10
+class stack;
+class dequue;
 
-class Span {
-
+template <typename T>
+class MutantStack : public std::stack<T> {
 	public:
-		Span(unsigned int nb);
-		Span(Span const &copy);
-		~Span(void);
+		MutantStack (void);
+		MutantStack (MutantStack const &copy);
+		~MutantStack (void);
 
-		Span	&operator=(Span const &src);
-		void	addNumber(int nbAdd);
-		void	filladdNumber(std::vector<int>::iterator start, std::vector<int>::iterator end);
-		int		getNumberVec(int id) const;
-		int		shortestSpan(void);
-		int		longestSpan(void) const;
-		void	fillSpanRandom(size_t nb);
-		void	printSpan(void) const;
+		MutantStack &operator=(MutantStack const &src);
 
+		typedef typename std::deque<T>::iterator iterator;
 
-	private:
-		Span(void);
-		unsigned int		_n;
-		std::vector<int>	_tab;
-
+		iterator begin(void);
+		iterator end(void);
 };
+
+
+
+# include "MutantStack.tpp"
 
 #endif

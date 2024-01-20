@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:28:37 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/19 20:48:14 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/19 20:58:06 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@ int randomNum(void) {
 
 int main(void)
 {
+	printTitle("TEST SUBJECT");
+	{
+		Span sp = Span(5);
+		sp.addNumber(6);
+		sp.addNumber(3);
+		sp.addNumber(17);
+		sp.addNumber(9);
+		sp.addNumber(11);
+		std::cout << sp.shortestSpan() << std::endl;
+		std::cout << sp.longestSpan() << std::endl;
 	printTitle("TEST ADD NUMBER");
 		Span sparow(10);
 		try {

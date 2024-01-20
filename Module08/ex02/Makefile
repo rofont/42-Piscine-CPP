@@ -6,21 +6,20 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2024/01/19 21:48:43 by romain           ###   ########.fr        #
+#    Updated: 2024/01/19 22:19:35 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ARGUMENTS--------------------------------------------------------------------
 
-NAME	= Easyfind
+NAME	= MutantStack
 
 CC		= c++
 CFLAGS	= -g -Wall -Wextra -Werror -std=c++98
 
 SRC		= main.cpp		\
-			Span.cpp	\
 
-HEADER	= Span.hpp
+HEADER	= MutantStack.hpp
 
 OBJ_DIR	= ./obj
 OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
