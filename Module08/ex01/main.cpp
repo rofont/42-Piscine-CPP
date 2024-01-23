@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 14:28:37 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/19 20:58:06 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/23 11:11:02 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int randomNum(void) {
 int main(void)
 {
 	printTitle("TEST SUBJECT");
-	{
 		Span sp = Span(5);
 		sp.addNumber(6);
 		sp.addNumber(3);
@@ -78,22 +77,5 @@ int main(void)
 		catch (std::exception &e) {
 			std::cerr << e.what() << std::endl;
 		}
-	printTitle("TEST WITH NEG NUMBERS");
-		Span neg(10);
-		try {
-			std::vector<int> test = {-20, -100, -1, -30, -11234, 20, 100, 1, 0, 2004055};
-			neg.filladdNumber(test.begin(), test.end());
-			// neg.printSpan();
-			int plus = neg.longestSpan();
-			std::cout << "The longest Span is " << plus << std::endl;
-			int minus = neg.shortestSpan();
-			std::cout << "The shortest Span is " << minus << std::endl;
-			// neg.printSpan();
-		}
-		catch (std::exception &e) {
-			std::cerr << e.what() << std::endl;
-		}
-
-
 	return 0;
 }
