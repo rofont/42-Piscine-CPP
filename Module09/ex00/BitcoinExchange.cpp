@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:52:34 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/24 22:13:25 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/26 08:31:06 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,47 +49,77 @@ void	BitcoinExchange::printDatabase( void ) {
 	}
 }
 
-/**
- * fonction that inserts in database a element
- * @param date key
- * @param change value
-*/
-void	BitcoinExchange::insertElementInDataBase ( int date, float change ) {
-	this->dataBase[ date ] = change;
-}
+// CHECK CSV-------------------------------------------------------------------
 
 /**
- * fonction that pars CSV file
+ * function pars CSV file
+ * @param nameCSV the name of CSV file
 */
-bool	BitcoinExchange::parsCSV( std::string nameCSV ) {
+void	BitcoinExchange::parsCSV( std::string nameCSV ) {
 	std::ifstream csv( nameCSV );
-	if (!csv.is_open())
-		std::cerr <<RED "This file has not been open" WHT<< std::endl;
-	/* TODO A completer
-		1.lire ligne par ligne
-		2.split la ligne avec la virgule et si plus que 2 arguments return erreur
-			regex sur le format specifique que l'on veut dans le fichier
-		3.check date //FAIT
-		4.convertir la date en int
-		5. metre le tout dans la map
-	*/
-	return true;
+	if ( !csv.is_open() ) {
+		throw std::runtime_error("The CSV file has not been open");
+	}
+	try {
+		std::string line;
+		this->checkHeaderCSV( csv );
+		int i = 1;
+		while (std::getline( csv, line )) {
+			this->checkLineCSV( line, i );
+			this->fillMap( line );
+			i++;
+		}
+		csv.close();
+	}
+	catch ( std::exception &e ) {
+		csv.close();
+		throw ;
+	}
 }
 
 /**
- * function that checks if the date is bisextile.
+ * check if CSV header is correct
+ * @param csv is the ifstream for CSV file
+*/
+void	BitcoinExchange::checkHeaderCSV( std::ifstream &csv ) {
+	std::string head;
+	std::getline( csv, head );
+	if ( head != "date,exchange_rate" )
+		throw std::runtime_error( "Format the CSV file is not correct (Header)" );
+}
+
+/**
+ * function check that the line has the correct format
+ * @param line the line must be checked
+*/
+void	BitcoinExchange::checkLineCSV( std::string line, int i ) {
+	std::regex pattern( "^(\\d{4}-\\d{2}-\\d{2}),(\\d*(\\.\\d+)?\\d*)$" );
+	if ( line.empty() ) {
+		throw std::runtime_error( "The CSV file is empty" );
+	}
+	else if ( !std::regex_match( line, pattern ) ) {
+		std::string error = "Format the CSV file is not correct - L";
+		std::stringstream er;
+		er << error << i;
+		throw std::runtime_error( er.str() );
+	}
+}
+
+//CHECK DATE ------------------------------------------------------------------
+
+/**
+ * function checks if the date is bisextile.
  * @param year year at test
  * @param return true if the year is bisextile
 */
 bool	BitcoinExchange::isBisextile( int year ) {
-	if ( (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0))
+	if ( (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0) )
 		return true;
 	return false;
 }
 
-
 /**
- * function that checks date is right.
+ * function checks date is right.
  * @param date current date
  * @param line line where is the date
  * @param return true if the date is valable
@@ -112,4 +142,59 @@ bool	BitcoinExchange::checkDate( std::string date ) {
 	if ( (year == 2009 && month == 1 && day == 1) )
 		return false;
 	return true;
+}
+
+// FILL MAP -------------------------------------------------------------------
+
+/**
+ * fonction that inserts in database a element
+ * @param date key
+ * @param change value
+*/
+void	BitcoinExchange::insertElementInDataBase ( int date, float change ) {
+	this->dataBase[ date ] = change;
+}
+
+/**
+ * Change Date to int
+ * @param date the the date we want to change
+*/
+int	BitcoinExchange::changeDateToInt( std::string &date ) {
+	int key;
+	try {
+		date.erase( std::remove(date.begin(), date.end(), '-'), date.end() );
+		key = stoi( date );
+		return key;
+	}
+	catch ( std::exception &e ) {
+		throw ;
+	}
+}
+
+/**
+ * fill one line in the contener map
+ * @param line the line we want to fill in the map
+*/
+void	BitcoinExchange::fillMap( std::string &line ) {
+	std::string key, value;
+	std::istringstream iss( line );
+
+	std::getline(iss, key, ',');
+	std::getline(iss, value, ',');
+	int valueKey = this->changeDateToInt( key );
+	this->insertElementInDataBase( valueKey, stof(value) );
+}
+
+// CHECK INPUT FILE -----------------------------------------------------------
+
+void	BitcoinExchange::parsInput( std::string nameInput) {
+	std::ifstream Input(nameInput);
+	if ( !Input.is_open() ) {
+		throw std::runtime_error("The CSV file has not been open");
+	try {
+		
+	}
+	catch ( std::exception &e ) {
+		throw ;
+	}
 }

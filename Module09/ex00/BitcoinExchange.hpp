@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:52:36 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/24 21:52:47 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/26 08:27:44 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,16 @@
 # define WHT "\x1B[37m"
 //------------------------------------------------------------------------------
 
-# include <iostream>
+#define CSV "test.csv"
+
 # include <algorithm>
+# include <iostream>
 # include <fstream>
 # include <sstream>
-# include <map>
 # include <string>
+# include <regex>
+# include <map>
+
 
 class BitcoinExchange {
 	public:
@@ -38,11 +42,22 @@ class BitcoinExchange {
 		~BitcoinExchange( void );
 
 		BitcoinExchange &operator=( BitcoinExchange const &src );
+
 		void	printDatabase( void );
 		void	insertElementInDataBase( int date, float change );
-		bool	parsCSV( std::string nameCSV );
-		bool	checkDate( std::string date );
+
 		bool	isBisextile( int year );
+		bool	checkDate( std::string date );
+
+		void	parsCSV( std::string nameCSV );
+		void	checkLineCSV( std::string line, int i );
+		void	checkHeaderCSV( std::ifstream &csv );
+
+		void	fillMap( std::string &line );
+		int		changeDateToInt( std::string &date );
+
+		void	parsInput( std::string nameInput );
+
 	private:
 		std::map<int, float> dataBase;
 };
