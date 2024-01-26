@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:52:34 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/26 08:31:06 by rofontai         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:56:27 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	BitcoinExchange::printDatabase( void ) {
  * function pars CSV file
  * @param nameCSV the name of CSV file
 */
-void	BitcoinExchange::parsCSV( std::string nameCSV ) {
+void	BitcoinExchange::manageCSV( std::string nameCSV ) {
 	std::ifstream csv( nameCSV );
 	if ( !csv.is_open() ) {
 		throw std::runtime_error("The CSV file has not been open");
@@ -179,22 +179,106 @@ void	BitcoinExchange::fillMap( std::string &line ) {
 	std::string key, value;
 	std::istringstream iss( line );
 
-	std::getline(iss, key, ',');
-	std::getline(iss, value, ',');
+	std::getline( iss, key, ',' );
+	std::getline( iss, value );
 	int valueKey = this->changeDateToInt( key );
 	this->insertElementInDataBase( valueKey, stof(value) );
 }
 
 // CHECK INPUT FILE -----------------------------------------------------------
 
-void	BitcoinExchange::parsInput( std::string nameInput) {
-	std::ifstream Input(nameInput);
-	if ( !Input.is_open() ) {
-		throw std::runtime_error("The CSV file has not been open");
+/**
+ * pars the line to receve
+ * @param line line that has to pars
+*/
+void	BitcoinExchange::manageInput( std::string input) {
+
+	std::regex pattern( "^(\\d{4}-\\d{2}-\\d{2}) \\| (\\d*(\\.\\d+)?\\d*)$" );
+	std::string line;
+	std::ifstream iss(input);
+	if(!iss.is_open())
+		throw std::runtime_error("Error: could not open file.");
 	try {
-		
+		this->manageCSV( CSV );
+		this->checkHeaderInput(iss);
+		while (std::getline(iss, line)) {
+			if (std::regex_match(line, pattern)) {
+				checkLineInput(line);
+			}
+			else
+				std::cout << "Error: bad input => " << line << std::endl;
+		}
+		iss.close();
 	}
 	catch ( std::exception &e ) {
 		throw ;
 	}
 }
+
+
+
+void	BitcoinExchange::checkLineInput( std::string line ) {
+	std::string temp = line;
+	temp.erase( std::remove(temp.begin(), temp.end(), ' '), temp.end() );
+
+	std::string date, value;
+	std::istringstream iss( temp );
+
+	std::getline( iss, date, '|' );
+	std::getline( iss, value );
+
+	printf("---check line---\ndate = %s\nvalue = %s\n-----------\n", date.c_str(), value.c_str());
+	int nb = this->changeDateToInt( date );
+	float val = stof(value);
+	printf("nb = %d\nval = %f\n", nb, val);
+
+	if ( nb < DATEMIN || nb > DATEMAX )
+		std::cout << "Error: this date is out of range." << std::endl;
+	else if ( val < 0 )
+		std::cout << "Error: not a positive number." << std::endl;
+	else if ( val > 1000 )
+		std::cout << "Error: too large a number." << std::endl;
+	else
+		std::cout <<CYA << date << " => " << value << " = " << this->convert(nb, val) << WHT << std::endl;
+}
+
+
+/**
+ * Search date and value in the map
+ * @param date the key of map
+ * @param value the value of the map
+*/
+float	BitcoinExchange::convert( int date, float value ) {
+
+	float res = 0.0f;
+	std::map<int, float>::iterator it;
+	it = this->dataBase.lower_bound(date);
+
+	if (it != this->dataBase.end()) {
+		printf("\n---convert---\nkey = %d\nvalue = %f\n---------\n", it->first, it->second);
+		res = it->second * value;
+	}
+	else if ( it != this->dataBase.begin() && it != this->dataBase.end() && it->first != date ) {
+		--it;
+		printf("\n---convert---\nkey = %d\nvalue = %f\n---------\n", it->first, it->second);
+		res = it->second * value;
+	}
+	else {
+		it = this->dataBase.end();
+		printf("\n---convert---\nkey = %d\nvalue = %f\n---------\n", it->first, it->second);
+		res =  it->second * value;
+	}
+	return res;
+}
+
+/**
+ * check if input header is correct
+ * @param input is the ifstream for input file
+*/
+void	BitcoinExchange::checkHeaderInput( std::ifstream &input ) {
+	std::string head;
+	std::getline( input, head );
+	if ( head != "date | value" )
+		throw std::runtime_error( "Format the Input file is not correct (Header)" );
+}
+

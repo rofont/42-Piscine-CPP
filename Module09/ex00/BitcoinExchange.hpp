@@ -6,7 +6,7 @@
 /*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:52:36 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/26 08:27:44 by rofontai         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:53:59 by rofontai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@
 # define WHT "\x1B[37m"
 //------------------------------------------------------------------------------
 
-#define CSV "test.csv"
+# define CSV "data.csv"
+# define DATEMIN 20090102
+# define DATEMAX 20240601
+
 
 # include <algorithm>
 # include <iostream>
@@ -49,14 +52,17 @@ class BitcoinExchange {
 		bool	isBisextile( int year );
 		bool	checkDate( std::string date );
 
-		void	parsCSV( std::string nameCSV );
+		void	manageCSV( std::string nameCSV );
 		void	checkLineCSV( std::string line, int i );
 		void	checkHeaderCSV( std::ifstream &csv );
 
 		void	fillMap( std::string &line );
 		int		changeDateToInt( std::string &date );
 
-		void	parsInput( std::string nameInput );
+		void	manageInput( std::string input );
+		void	checkLineInput( std::string line );
+		float	convert( int date, float value );
+		void	checkHeaderInput( std::ifstream &input );
 
 	private:
 		std::map<int, float> dataBase;
