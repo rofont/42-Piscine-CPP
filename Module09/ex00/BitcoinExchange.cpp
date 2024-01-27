@@ -6,29 +6,23 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:52:34 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/26 21:26:46 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/26 21:48:48 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange( void ) {
-	// std::cout << Default Constructor << std::endl;
-}
+BitcoinExchange::BitcoinExchange( void ) {}
 
 BitcoinExchange::BitcoinExchange( BitcoinExchange const &copy ) {
 	*this = copy;
-	// std::cout << Copy Constructor << std::endl;
 }
 
-BitcoinExchange::~BitcoinExchange( void ) {
-	// std::cout << Default Destructor << std::endl;
-}
+BitcoinExchange::~BitcoinExchange( void ) {}
 
 BitcoinExchange &BitcoinExchange::operator=( BitcoinExchange const &src ) {
-	// std::cout << Assignation Operator << std::endl;
 	if ( this != &src )
-		this->dataBase = src.dataBase;
+		this->_dataBase = src._dataBase;
 	return *this;
 }
 
@@ -40,7 +34,7 @@ BitcoinExchange &BitcoinExchange::operator=( BitcoinExchange const &src ) {
 void	BitcoinExchange::printDatabase( void ) {
 	try {
 		std::map<int, float>::iterator it;
-		for ( it = this->dataBase.begin(); it != this->dataBase.end(); ++it )
+		for ( it = this->_dataBase.begin(); it != this->_dataBase.end(); ++it )
         	std::cout << it->first << " : " << it->second << std::endl;
 	}
 	catch ( std::exception &e ) {
@@ -92,6 +86,7 @@ void	BitcoinExchange::checkHeaderCSV( std::ifstream &csv ) {
 /**
  * function check that the line has the correct format
  * @param line the line must be checked
+ * @param i is the line number
 */
 void	BitcoinExchange::checkLineCSV( std::string line, int i ) {
 	std::regex pattern( "^(\\d{4}-\\d{2}-\\d{2}),(\\d*(\\.\\d+)?\\d*)$" );
@@ -153,12 +148,13 @@ bool	BitcoinExchange::checkDate( std::string date ) {
  * @param change value
 */
 void	BitcoinExchange::insertElementInDataBase ( int date, float change ) {
-	this->dataBase[ date ] = change;
+	this->_dataBase[ date ] = change;
 }
 
 /**
  * Change Date to int
  * @param date the the date we want to change
+ * @param return the date in int
 */
 int	BitcoinExchange::changeDateToInt( std::string date ) {
 	int key;
@@ -246,26 +242,27 @@ void	BitcoinExchange::checkLineInput( std::string line ) {
  * Search date and value in the map
  * @param date the key of map
  * @param value the value of the map
+ * @param return the value to which the exchange rate has been applied
 */
 float	BitcoinExchange::convert( int date, float value ) {
 	float res = 0.0f;
 	std::map<int, float>::iterator it;
 
 
-	it = this->dataBase.lower_bound( date );
-	if ( it != this->dataBase.begin() && it != this->dataBase.end() && it->first != date ) {
+	it = this->_dataBase.lower_bound( date );
+	if ( it != this->_dataBase.begin() && it != this->_dataBase.end() && it->first != date ) {
 		--it;
 		// std::cout << CYA << std::endl << "---convert---" <<std::endl;
 		// std::cout << "key = " << it->first << std::endl << "value = " << it->second << WHT << std::endl;
 		res = it->second * value;
 	}
-	else if (it != this->dataBase.end()) {
+	else if (it != this->_dataBase.end()) {
 		// std::cout << CYA << std::endl << "---convert---" <<std::endl;
 		// std::cout << "key = " << it->first << std::endl << "value = " << it->second << WHT << std::endl;
 		res = it->second * value;
 	}
 	else {
-		it = this->dataBase.end();
+		it = this->_dataBase.end();
 		--it;
 		// std::cout << CYA << std::endl << "---convert---" <<std::endl;
 		// std::cout << "key = " << it->first << std::endl << "value = " << it->second << WHT << std::endl;

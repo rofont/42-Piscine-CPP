@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:52:36 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/26 21:21:50 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/26 21:38:36 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,15 @@
 class BitcoinExchange {
 	public:
 		BitcoinExchange( void );
-		BitcoinExchange( BitcoinExchange const &copy );
 		~BitcoinExchange( void );
-
-		BitcoinExchange &operator=( BitcoinExchange const &src );
-
 
 		void	manageInput( std::string input );
 
 	private:
-		std::map<int, float> dataBase;
+		std::map<int, float> _dataBase;
+
+		BitcoinExchange( BitcoinExchange const &copy );
+		BitcoinExchange &operator=( BitcoinExchange const &src );
 
 		void	printDatabase( void );
 		void	insertElementInDataBase( int date, float change );
