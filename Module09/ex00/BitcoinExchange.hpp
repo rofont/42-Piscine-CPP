@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:52:36 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/26 15:53:59 by rofontai         ###   ########.fr       */
+/*   Updated: 2024/01/26 21:21:50 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ class BitcoinExchange {
 
 		BitcoinExchange &operator=( BitcoinExchange const &src );
 
+
+		void	manageInput( std::string input );
+
+	private:
+		std::map<int, float> dataBase;
+
 		void	printDatabase( void );
 		void	insertElementInDataBase( int date, float change );
 
@@ -57,15 +63,11 @@ class BitcoinExchange {
 		void	checkHeaderCSV( std::ifstream &csv );
 
 		void	fillMap( std::string &line );
-		int		changeDateToInt( std::string &date );
+		int		changeDateToInt( std::string date );
 
-		void	manageInput( std::string input );
 		void	checkLineInput( std::string line );
 		float	convert( int date, float value );
 		void	checkHeaderInput( std::ifstream &input );
-
-	private:
-		std::map<int, float> dataBase;
 };
 
 

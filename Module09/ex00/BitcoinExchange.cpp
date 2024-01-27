@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:52:34 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/26 15:56:27 by rofontai         ###   ########.fr       */
+/*   Updated: 2024/01/26 21:26:46 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ BitcoinExchange::~BitcoinExchange( void ) {
 
 BitcoinExchange &BitcoinExchange::operator=( BitcoinExchange const &src ) {
 	// std::cout << Assignation Operator << std::endl;
-	if (this != &src)
-		*this = src;
+	if ( this != &src )
+		this->dataBase = src.dataBase;
 	return *this;
 }
 
@@ -42,14 +42,13 @@ void	BitcoinExchange::printDatabase( void ) {
 		std::map<int, float>::iterator it;
 		for ( it = this->dataBase.begin(); it != this->dataBase.end(); ++it )
         	std::cout << it->first << " : " << it->second << std::endl;
-
 	}
 	catch ( std::exception &e ) {
 		throw ;
 	}
 }
 
-// CHECK CSV-------------------------------------------------------------------
+// MANAGE CSV-------------------------------------------------------------------
 
 /**
  * function pars CSV file
@@ -57,8 +56,9 @@ void	BitcoinExchange::printDatabase( void ) {
 */
 void	BitcoinExchange::manageCSV( std::string nameCSV ) {
 	std::ifstream csv( nameCSV );
+
 	if ( !csv.is_open() ) {
-		throw std::runtime_error("The CSV file has not been open");
+		throw std::runtime_error( "The CSV file has not been open" );
 	}
 	try {
 		std::string line;
@@ -83,6 +83,7 @@ void	BitcoinExchange::manageCSV( std::string nameCSV ) {
 */
 void	BitcoinExchange::checkHeaderCSV( std::ifstream &csv ) {
 	std::string head;
+
 	std::getline( csv, head );
 	if ( head != "date,exchange_rate" )
 		throw std::runtime_error( "Format the CSV file is not correct (Header)" );
@@ -94,6 +95,7 @@ void	BitcoinExchange::checkHeaderCSV( std::ifstream &csv ) {
 */
 void	BitcoinExchange::checkLineCSV( std::string line, int i ) {
 	std::regex pattern( "^(\\d{4}-\\d{2}-\\d{2}),(\\d*(\\.\\d+)?\\d*)$" );
+
 	if ( line.empty() ) {
 		throw std::runtime_error( "The CSV file is empty" );
 	}
@@ -130,14 +132,13 @@ bool	BitcoinExchange::checkDate( std::string date ) {
 	std::istringstream iss( date );
 
 	iss >> year >> under >> month >> under >> day;
-	printf("year = %d\nmonth = %d\nday = %d\n", year, month, day);
 	if ( (year < 2009 || year > 2024) || (month < 1 || month > 12) ||
 		(day < 1 || day > 31) )
 		return false;
 	if ( (month == 4 || month == 6 || month == 9 || month ==11) && day > 30 )
 		return false;
 	if ( (month == 2 && !this->isBisextile( year ) && day > 28) ||
-		(month == 2 && this->isBisextile( year ) && day > 29))
+		(month == 2 && this->isBisextile( year ) && day > 29) )
 		return false;
 	if ( (year == 2009 && month == 1 && day == 1) )
 		return false;
@@ -159,7 +160,7 @@ void	BitcoinExchange::insertElementInDataBase ( int date, float change ) {
  * Change Date to int
  * @param date the the date we want to change
 */
-int	BitcoinExchange::changeDateToInt( std::string &date ) {
+int	BitcoinExchange::changeDateToInt( std::string date ) {
 	int key;
 	try {
 		date.erase( std::remove(date.begin(), date.end(), '-'), date.end() );
@@ -191,19 +192,19 @@ void	BitcoinExchange::fillMap( std::string &line ) {
  * pars the line to receve
  * @param line line that has to pars
 */
-void	BitcoinExchange::manageInput( std::string input) {
-
-	std::regex pattern( "^(\\d{4}-\\d{2}-\\d{2}) \\| (\\d*(\\.\\d+)?\\d*)$" );
+void	BitcoinExchange::manageInput( std::string input ) {
+	std::regex pattern( "^(\\d{4}-\\d{2}-\\d{2}) \\| (\\-*\\+*\\d*(\\.\\d+)?\\d*)$" );
 	std::string line;
-	std::ifstream iss(input);
-	if(!iss.is_open())
-		throw std::runtime_error("Error: could not open file.");
+	std::ifstream iss( input );
+
+	if( !iss.is_open() )
+		throw std::runtime_error( "Error: could not open file." );
 	try {
 		this->manageCSV( CSV );
-		this->checkHeaderInput(iss);
-		while (std::getline(iss, line)) {
-			if (std::regex_match(line, pattern)) {
-				checkLineInput(line);
+		this->checkHeaderInput( iss );
+		while ( std::getline(iss, line) ) {
+			if ( std::regex_match(line, pattern) ) {
+				checkLineInput( line );
 			}
 			else
 				std::cout << "Error: bad input => " << line << std::endl;
@@ -227,10 +228,8 @@ void	BitcoinExchange::checkLineInput( std::string line ) {
 	std::getline( iss, date, '|' );
 	std::getline( iss, value );
 
-	printf("---check line---\ndate = %s\nvalue = %s\n-----------\n", date.c_str(), value.c_str());
 	int nb = this->changeDateToInt( date );
 	float val = stof(value);
-	printf("nb = %d\nval = %f\n", nb, val);
 
 	if ( nb < DATEMIN || nb > DATEMAX )
 		std::cout << "Error: this date is out of range." << std::endl;
@@ -239,7 +238,7 @@ void	BitcoinExchange::checkLineInput( std::string line ) {
 	else if ( val > 1000 )
 		std::cout << "Error: too large a number." << std::endl;
 	else
-		std::cout <<CYA << date << " => " << value << " = " << this->convert(nb, val) << WHT << std::endl;
+		std::cout << date << " => " << value << " = " << this->convert(nb, val) << std::endl;
 }
 
 
@@ -249,23 +248,27 @@ void	BitcoinExchange::checkLineInput( std::string line ) {
  * @param value the value of the map
 */
 float	BitcoinExchange::convert( int date, float value ) {
-
 	float res = 0.0f;
 	std::map<int, float>::iterator it;
-	it = this->dataBase.lower_bound(date);
 
-	if (it != this->dataBase.end()) {
-		printf("\n---convert---\nkey = %d\nvalue = %f\n---------\n", it->first, it->second);
+
+	it = this->dataBase.lower_bound( date );
+	if ( it != this->dataBase.begin() && it != this->dataBase.end() && it->first != date ) {
+		--it;
+		// std::cout << CYA << std::endl << "---convert---" <<std::endl;
+		// std::cout << "key = " << it->first << std::endl << "value = " << it->second << WHT << std::endl;
 		res = it->second * value;
 	}
-	else if ( it != this->dataBase.begin() && it != this->dataBase.end() && it->first != date ) {
-		--it;
-		printf("\n---convert---\nkey = %d\nvalue = %f\n---------\n", it->first, it->second);
+	else if (it != this->dataBase.end()) {
+		// std::cout << CYA << std::endl << "---convert---" <<std::endl;
+		// std::cout << "key = " << it->first << std::endl << "value = " << it->second << WHT << std::endl;
 		res = it->second * value;
 	}
 	else {
 		it = this->dataBase.end();
-		printf("\n---convert---\nkey = %d\nvalue = %f\n---------\n", it->first, it->second);
+		--it;
+		// std::cout << CYA << std::endl << "---convert---" <<std::endl;
+		// std::cout << "key = " << it->first << std::endl << "value = " << it->second << WHT << std::endl;
 		res =  it->second * value;
 	}
 	return res;
