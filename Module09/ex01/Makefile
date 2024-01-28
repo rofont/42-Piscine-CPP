@@ -6,7 +6,7 @@
 #    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2024/01/26 21:31:00 by romain           ###   ########.fr        #
+#    Updated: 2024/01/27 13:39:08 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,10 +59,12 @@ fclean	: clean
 
 re	: fclean all
 
-leak	: all
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+#leak	: all
+#	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 
-leaks	: all
-	@leaks --atExit -- ./$(NAME)
+#leaks	: all
+#	@leaks --atExit -- ./$(NAME)
 
-.PHONY	: all clean fclean re leaks leak
+.PHONY	: all clean fclean re #leaks leak
+
+# https://rpn.startkoden.com/

@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 21:31:44 by romain            #+#    #+#             */
-/*   Updated: 2024/01/26 21:53:25 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/28 10:04:07 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,25 @@
 # include <stack>
 
 class RPN {
-
 	public:
-		RPN( void );
 		RPN( std::string input );
-		RPN( RPN const &copy);
 		~RPN( void );
-
-		RPN &operator=( RPN const &src );
-		void	printInput ( void );
-
 
 
 	private:
 		std::string _input;
+		std::stack<int> _stock;
+
+		RPN( void );
+		RPN( RPN const &copy );
+
+		RPN &operator=( RPN const &src );
+		void	printInput ( void );
+
+		void	parsInput( void );
+		void	fillStack( void );
+		void	doOper( char const &c );
+
 };
 
 

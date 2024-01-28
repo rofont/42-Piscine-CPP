@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:52:30 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/26 21:27:56 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/26 21:59:39 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int main( int ac, char **av )
 		return 1;
 	}
 	try {
-		BitcoinExchange Paul;
-		Paul.manageInput(av[1]);
+		BitcoinExchange coin;
+		coin.manageInput(av[1]);
 	}
 	catch ( std::exception &e ) {
 		std::cerr << e.what() << std::endl;
