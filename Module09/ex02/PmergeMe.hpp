@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:49:14 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/29 13:19:22 by rofontai         ###   ########.fr       */
+/*   Updated: 2024/01/30 15:08:57 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@
 # include <vector>
 # include <deque>
 
+# ifndef DEBUG
+#  define DEBUG 1
+# endif
+
+# define EMPTY -1
+
+typedef std::pair<int, int> IntPair;
+
 class PmergeMe {
 	public:
 		PmergeMe( void );
@@ -39,11 +47,17 @@ class PmergeMe {
 		PmergeMe &operator=( PmergeMe const &src );
 
 		void	printVector( void ) const;
+		void	printVectorPair( void ) const;
 
 		void	parsInput( int ac, char **av );
+		void	fillVectorPair( int ac, char **av );
+
+		void	SortSecondElement ( void );
+		void	manageInput( int ac, char **av );
 
 	private:
-		std::vector<int> _list;
+		std::vector<int> _vector;
+		std::vector<IntPair> _vectorPair;
 };
 
 #endif

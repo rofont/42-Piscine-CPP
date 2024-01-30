@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:52:10 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/29 14:47:34 by rofontai         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:57:13 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	main( int ac, char **av )
 {
 	try {
 		PmergeMe Against;
-		Against.parsInput( ac, av );
-		Against.printVector();
+		Against.manageInput( ac, av );
 	}
 	catch ( std::exception &e ) {
 		std::cout << e.what() << std::endl;
