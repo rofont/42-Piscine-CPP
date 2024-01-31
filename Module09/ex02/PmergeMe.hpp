@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:49:14 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/30 15:08:57 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/31 16:07:12 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define EMPTY -1
 
 typedef std::pair<int, int> IntPair;
+typedef std::vector<int>::iterator ItVec;
 
 class PmergeMe {
 	public:
@@ -46,17 +47,29 @@ class PmergeMe {
 
 		PmergeMe &operator=( PmergeMe const &src );
 
-		void	printVector( void ) const;
+		void	printInputBefore( int ac, char **av );
+		void	printVector( std::vector<int> vector ) const;
 		void	printVectorPair( void ) const;
+		void	printInputAfter( void );
+
 
 		void	parsInput( int ac, char **av );
 		void	fillVectorPair( int ac, char **av );
 
-		void	SortSecondElement ( void );
-		void	manageInput( int ac, char **av );
+		void	sortPairElement( void );
+		void	createMainAndPendVector( void );
+		int		binarySearch( int nbInsert );
+		void	insertInMain( void );
+
+
+		void	extractFirstElement( void );
+
+		void	manageInputDebug( int ac, char **av );
+		void	fordJohnsonAlgorithm( int ac, char **av );
 
 	private:
-		std::vector<int> _vector;
+		std::vector<int> _vectorPend;
+		std::vector<int> _vectorMain;
 		std::vector<IntPair> _vectorPair;
 };
 

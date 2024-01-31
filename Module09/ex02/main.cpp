@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:52:10 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/30 14:57:13 by romain           ###   ########.fr       */
+/*   Updated: 2024/01/31 15:42:03 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 int	main( int ac, char **av )
 {
 	try {
-		PmergeMe Against;
-		Against.manageInput( ac, av );
+		PmergeMe FJA;
+		if ( DEBUG )
+			FJA.manageInputDebug( ac, av );
+		else
+			FJA.fordJohnsonAlgorithm( ac, av );
 	}
 	catch ( std::exception &e ) {
 		std::cout << e.what() << std::endl;
