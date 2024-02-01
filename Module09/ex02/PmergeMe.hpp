@@ -61,6 +61,9 @@ class PmergeMe {
 		int		binarySearch( int nbInsert );
 		void	insertInMain( void );
 
+		int		jacobsthalList( int const &nbSearch );
+		std::vector<int>	genreteJacobSVector( void );
+
 
 		void	extractFirstElement( void );
 

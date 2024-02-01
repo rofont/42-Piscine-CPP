@@ -157,27 +157,29 @@ void	PmergeMe::createMainAndPendVector( void ) {
 
 
 // JACLOBSTHAL --------------------------------------------------------------------------
-// static int	jacobsthalList( int const &nbSearch ) {
-// 	if ( nbSearch == 0 )
-//         return 0;
-//     else if ( nbSearch == 1 )
-//         return 1;
-//     else
-//         return jacobsthalList(nbSearch - 1) + 2 * jacobsthalList(nbSearch - 2);
-// }
+int	PmergeMe::jacobsthalList( int const &nbSearch ) {
+	if ( nbSearch == 0 )
+        return 0;
+    else if ( nbSearch == 1 )
+        return 1;
+    else
+        return jacobsthalList(nbSearch - 1) + 2 * jacobsthalList(nbSearch - 2);
+}
 
-// static bool	compareJacobsthalElement( int nb1, int nb2 ) {
-// 	return jacobsthalList( nb1 ) < jacobsthalList( nb2 );
-// }
+std::vector<int>	PmergeMe::genreteJacobSVector( void ){
+	std::vector<int> jacobList;
 
-// void	PmergeMe::extractFirstElement( void ) {
-// 	for ( size_t i = 0; i < _vectorPair.size(); i++) {
-// 			this->_vectorPend.push_back( this->_vectorPair[i].first );
-// 	}
-// 	std::sort( this->_vectorPend.begin(), this->_vectorPend.end(), compareJacobsthalElement );
-// 	// std::cout <<YEL "\n----------firstElement vector---------------" WHT<< std::endl;
-// 	this->printVector(_vectorPend);
-// }
+	int i = 2;
+	jacobList.push_back( 1 );
+	while ( jacobsthalList(++i) < static_cast<int>(this->_vectorPend.size()) ) {
+		jacobList.push_back(this->jacobsthalList(i));
+	}
+	std::cout << YEL "--- Vector Jacob ---" << std::endl;
+	this->printVector(jacobList);
+	return jacobList;
+}
+
+
 // ---------------------------------------------------------------------------------------------------
 /**
  * Finds where to insert a number in the vectorMain
@@ -201,6 +203,11 @@ int	PmergeMe::binarySearch( int nbInsert ) {
  * Insert the number of the vectorPend in the vectorMain
 */
 void	PmergeMe::insertInMain( void ) {
+	std::vector<int> jacobList = this->genreteJacobSVector();
+
+	int cur;
+	int prev;
+
 	for ( size_t i = 0; i < this->_vectorPend.size(); ++i ) {
 		int insert = this->binarySearch( this->_vectorPend[i] );
 		this->_vectorMain.insert( this->_vectorMain.begin() + insert, this->_vectorPend[i] );
@@ -236,11 +243,11 @@ void	PmergeMe::manageInputDebug( int ac, char **av ) {
 		std::cout <<YEL "\n----------firstElement vector---------------" WHT<< std::endl;
 		this->printVector(this->_vectorPend);
 	}
-	// this->extractFirstElement();
-	// if  ( DEBUG ) {
-	// 	std::cout << std::endl <<YEL "PRINT AFTER EXTRACT FIRST ----------" WHT<< std::endl << std::endl;
-	// 	this->printVector(this->_vectorPend);
-	// }
+	std::vector<int> pouet = this->genreteJacobSVector();
+	// // if  ( DEBUG ) {
+	// // 	std::cout << std::endl <<YEL "PRINT AFTER EXTRACT FIRST ----------" WHT<< std::endl << std::endl;
+	this->printVector(pouet);
+	// // }
 	this->insertInMain();
 	if  ( DEBUG ) {
 		std::cout << std::endl <<YEL "PRINT AFTER ALGO ----------" WHT<< std::endl << std::endl;
