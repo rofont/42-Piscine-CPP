@@ -247,8 +247,8 @@ void	PmergeMe::insertInMain( void ) {
  * @param av list of arguments
 */
 void	PmergeMe::manageInputDebug( int ac, char **av ) {
-	std::clock_t start, end;
-	start = std::clock();
+	struct timespec start, end;
+	clock_gettime(CLOCK_REALTIME, &start);
 	this->parsInput( ac, av );
 	this->printInputBefore( ac, av );
 	this->fillVectorPair( ac, av );
@@ -276,16 +276,16 @@ void	PmergeMe::manageInputDebug( int ac, char **av ) {
 	}
 	this->sortedOrNot();
 	this->printInputAfter();
-	end = std::clock();
-	double duration = (end - start) * 1000 / CLOCKS_PER_SEC;
-	std::cout << "Time to process a range of " << ac - 1 << " elements with std::[..] : " << duration << "sec" << std ::endl;
+	clock_gettime(CLOCK_REALTIME, &end);
+	double duration = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_nsec - start.tv_nsec) / 1000000.0;
+	std::cout << "Time to process a range of " << ac - 1 << " elements with std::[..] : " << duration << "msec" << std ::endl;
 }
 
 
 
 void	PmergeMe::fordJohnsonAlgorithm( int ac, char **av ) {
-	std::clock_t start, end;
-	start = std::clock();
+	struct timespec start, end;
+	clock_gettime(CLOCK_REALTIME, &start);
 	this->parsInput( ac, av );
 	this->printInputBefore( ac, av );
 	this->fillVectorPair( ac, av );
@@ -294,8 +294,8 @@ void	PmergeMe::fordJohnsonAlgorithm( int ac, char **av ) {
 	this->insertInMain();
 	this->printInputAfter();
 	this->sortedOrNot();
-	end = std::clock();
-	double duration = (end - start) * 1000 / CLOCKS_PER_SEC;
-	std::cout << "Time to process a range of " << ac - 1 << " elements with std::[..] : " << duration << "msec" << std ::endl;
+	clock_gettime(CLOCK_REALTIME, &end);
+	double duration = (end.tv_sec - start.tv_sec) * 1000.0 + (end.tv_nsec - start.tv_nsec) / 1000000.0;
+	std::cout << "Time to process a range of " << ac - 1 << " elements with std::vector : " << duration << "ms" << std ::endl;
 }
 
