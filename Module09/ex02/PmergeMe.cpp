@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:51:54 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/31 16:48:58 by romain           ###   ########.fr       */
+/*   Updated: 2024/02/01 22:19:26 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,15 @@ void	PmergeMe::printInputAfter( void ) {
 	std::cout << std::endl;
 }
 
+void	PmergeMe::sortedOrNot( void ) {
+	for (size_t i = 1; i < this->_vectorMain.size(); i++) {
+		if ( this->_vectorMain[i-1] > this->_vectorMain[i] ) {
+			std::cout << RED "This vector is not sorted" WHT << std::endl;
+			return ;
+		}
+	}
+	std::cout << CYA "This vector is sorted" WHT << std::endl;
+}
 
 // PARS INPUT -----------------------------------------------------------------
 
@@ -153,10 +162,12 @@ void	PmergeMe::createMainAndPendVector( void ) {
 			this->_vectorMain.push_back( this->_vectorPair[i].second );
 		this->_vectorPend.push_back( this->_vectorPair[i].first );
 	}
+	this->_vectorMain.insert( this->_vectorMain.begin(), this->_vectorPend[0] );
 }
 
 
 // JACLOBSTHAL --------------------------------------------------------------------------
+
 int	PmergeMe::jacobsthalList( int const &nbSearch ) {
 	if ( nbSearch == 0 )
         return 0;
@@ -174,11 +185,10 @@ std::vector<int>	PmergeMe::genreteJacobSVector( void ){
 	while ( jacobsthalList(++i) < static_cast<int>(this->_vectorPend.size()) ) {
 		jacobList.push_back(this->jacobsthalList(i));
 	}
-	std::cout << YEL "--- Vector Jacob ---" << std::endl;
-	this->printVector(jacobList);
+	// std::cout << YEL "--- Vector Jacob ---" << std::endl;
+	// this->printVector(jacobList);
 	return jacobList;
 }
-
 
 // ---------------------------------------------------------------------------------------------------
 /**
@@ -203,14 +213,30 @@ int	PmergeMe::binarySearch( int nbInsert ) {
  * Insert the number of the vectorPend in the vectorMain
 */
 void	PmergeMe::insertInMain( void ) {
-	std::vector<int> jacobList = this->genreteJacobSVector();
+	std::vector<int> jst = this->genreteJacobSVector();
 
-	int cur;
-	int prev;
+	int insert, temp, cont(1);
+	itVec cur = jst.begin() + 1;
+	itVec prev = jst.begin();
 
-	for ( size_t i = 0; i < this->_vectorPend.size(); ++i ) {
-		int insert = this->binarySearch( this->_vectorPend[i] );
-		this->_vectorMain.insert( this->_vectorMain.begin() + insert, this->_vectorPend[i] );
+	while ( cur != jst.end() ) {
+		temp = *cur + 1;
+			// std::cout << MAG "before cur = " << *cur << ", prev = " << *prev << WHT << std::endl;
+		while ( *cur != *prev - 1) {
+			insert = this->binarySearch( this->_vectorPend[*cur] );
+			// std::cout << CYA "insert = " << insert << ", nbSearch = " << this->_vectorPend[*cur] << WHT << std::endl;
+			this->_vectorMain.insert(this->_vectorMain.begin() + insert, this->_vectorPend[*cur] );
+			*cur -= 1;
+			cont++;
+			// std::cout << RED "cont = " << cont << ", cur = " << *cur << ", prev = " << *prev << WHT << std::endl;
+		}
+		*prev = temp;
+		++cur;
+	}
+	while (cont < static_cast<int>(this->_vectorPend.size())) {
+		insert = this->binarySearch( this->_vectorPend[cont] );
+		this->_vectorMain.insert(this->_vectorMain.begin() + insert, this->_vectorPend[cont] );
+		cont++;
 	}
 }
 
@@ -240,19 +266,15 @@ void	PmergeMe::manageInputDebug( int ac, char **av ) {
 		std::cout << std::endl <<YEL "PRINT AFTER CREATE MAIN AND PENDING VECTOR ----------" WHT<< std::endl << std::endl;
 		std::cout <<YEL "\n----------main vector---------------" WHT<< std::endl;
 		this->printVector(this->_vectorMain);
-		std::cout <<YEL "\n----------firstElement vector---------------" WHT<< std::endl;
+		std::cout <<YEL "\n----------pend vector---------------" WHT<< std::endl;
 		this->printVector(this->_vectorPend);
 	}
-	std::vector<int> pouet = this->genreteJacobSVector();
-	// // if  ( DEBUG ) {
-	// // 	std::cout << std::endl <<YEL "PRINT AFTER EXTRACT FIRST ----------" WHT<< std::endl << std::endl;
-	this->printVector(pouet);
-	// // }
 	this->insertInMain();
 	if  ( DEBUG ) {
 		std::cout << std::endl <<YEL "PRINT AFTER ALGO ----------" WHT<< std::endl << std::endl;
 		this->printVector(this->_vectorMain);
 	}
+	this->sortedOrNot();
 	this->printInputAfter();
 	end = std::clock();
 	double duration = (end - start) * 1000 / CLOCKS_PER_SEC;
@@ -271,6 +293,7 @@ void	PmergeMe::fordJohnsonAlgorithm( int ac, char **av ) {
 	this->createMainAndPendVector();
 	this->insertInMain();
 	this->printInputAfter();
+	this->sortedOrNot();
 	end = std::clock();
 	double duration = (end - start) * 1000 / CLOCKS_PER_SEC;
 	std::cout << "Time to process a range of " << ac - 1 << " elements with std::[..] : " << duration << "msec" << std ::endl;

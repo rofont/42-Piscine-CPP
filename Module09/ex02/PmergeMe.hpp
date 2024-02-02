@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:49:14 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/31 16:07:12 by romain           ###   ########.fr       */
+/*   Updated: 2024/02/01 22:18:34 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@
 # include <deque>
 
 # ifndef DEBUG
-#  define DEBUG 1
+#  define DEBUG 0
 # endif
 
 # define EMPTY -1
 
 typedef std::pair<int, int> IntPair;
-typedef std::vector<int>::iterator ItVec;
+typedef std::vector<int>::iterator itVec;
 
 class PmergeMe {
 	public:
@@ -51,6 +51,7 @@ class PmergeMe {
 		void	printVector( std::vector<int> vector ) const;
 		void	printVectorPair( void ) const;
 		void	printInputAfter( void );
+		void	sortedOrNot( void );
 
 
 		void	parsInput( int ac, char **av );
