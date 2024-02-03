@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rofontai <rofontai@student.42.fr>          +#+  +:+       +#+         #
+#    By: romain <romain@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 11:44:03 by rofontai          #+#    #+#              #
-#    Updated: 2024/01/29 09:45:58 by rofontai         ###   ########.fr        #
+#    Updated: 2024/02/03 14:52:10 by romain           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ NAME	= PmergeMe
 CC		= c++
 CFLAGS	= -g -Wall -Wextra -Werror -std=c++98
 
-SRC		=	main.cpp			\
-			PmergeMe.cpp		\
+SRC		=	main.cpp		\
 
-HEADER	=	PmergeMe.hpp
+HEADER	=	PmergeMe.hpp	\
+			PmergeMe.tpp	\
 
 OBJ_DIR	= ./obj
 OBJ		= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))

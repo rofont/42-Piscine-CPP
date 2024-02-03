@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:49:14 by rofontai          #+#    #+#             */
-/*   Updated: 2024/02/01 22:18:34 by romain           ###   ########.fr       */
+/*   Updated: 2024/02/03 16:02:34 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@
 # define WHT "\x1B[37m"
 //------------------------------------------------------------------------------
 
-# include <iostream>
 # include <algorithm>
+# include <iostream>
+# include <string>
 # include <cctype>
 # include <vector>
 # include <deque>
+# include <iomanip>
 
 # ifndef DEBUG
 #  define DEBUG 0
@@ -37,44 +39,39 @@
 # define EMPTY -1
 
 typedef std::pair<int, int> IntPair;
-typedef std::vector<int>::iterator itVec;
 
+template <typename Cont, typename ContPair>
 class PmergeMe {
 	public:
 		PmergeMe( void );
-		PmergeMe( PmergeMe const &copy );
 		~PmergeMe( void );
 
+		void	manageInputDebug( int ac, char **av, std::string type );
+		void	fordJohnsonAlgorithm( int ac, char **av, std::string type );
+
+	private:
+		Cont _pend;
+		Cont _main;
+		ContPair _pair;
+
+		PmergeMe( PmergeMe const &copy );
 		PmergeMe &operator=( PmergeMe const &src );
 
 		void	printInputBefore( int ac, char **av );
-		void	printVector( std::vector<int> vector ) const;
+		void	printVector( Cont vector ) const;
 		void	printVectorPair( void ) const;
 		void	printInputAfter( void );
-		void	sortedOrNot( void );
-
+		void	sortedOrNot( std::string type );
 
 		void	parsInput( int ac, char **av );
 		void	fillVectorPair( int ac, char **av );
-
 		void	sortPairElement( void );
 		void	createMainAndPendVector( void );
+		int		jacobsthalList( int const &nbSearch );
+		Cont	genreteJacobSVector( void );
 		int		binarySearch( int nbInsert );
 		void	insertInMain( void );
-
-		int		jacobsthalList( int const &nbSearch );
-		std::vector<int>	genreteJacobSVector( void );
-
-
-		void	extractFirstElement( void );
-
-		void	manageInputDebug( int ac, char **av );
-		void	fordJohnsonAlgorithm( int ac, char **av );
-
-	private:
-		std::vector<int> _vectorPend;
-		std::vector<int> _vectorMain;
-		std::vector<IntPair> _vectorPair;
 };
 
+# include "PmergeMe.tpp"
 #endif
