@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 21:40:08 by romain            #+#    #+#             */
-/*   Updated: 2024/01/28 10:05:22 by romain           ###   ########.fr       */
+/*   Updated: 2024/02/04 20:14:21 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	RPN::parsInput( void ) {
 
 	while ( _input[++i] ) {
 		if ( (i % 2 != 0 && _input[i] != ' ') || found != std::string::npos )
-			throw std::runtime_error( "Input is invalid. Please enter a RPN equation correct" );
+			throw std::runtime_error( "Input is invalid. Please enter a correct RPN equation" );
 	}
 }
 
@@ -65,7 +65,7 @@ void	RPN::parsInput( void ) {
 void	RPN::doOper( char const &c ) {
 
 	if ( this->_stock.size() < 2 )
-		throw std::runtime_error( "Syntax of operation is false" );
+		throw std::runtime_error( "Syntax of the operation is wrong" );
 
 	int res = 0;
 	int nb1 = _stock.top();
@@ -82,7 +82,7 @@ void	RPN::doOper( char const &c ) {
 	else if ( c == '/' )
 		res = nb2 / nb1;
 	else
-		throw std::runtime_error( "Syntax of operation is false" );
+		throw std::runtime_error( "Syntax of the operation is wrong" );
 	_stock.push(res);
 }
 
