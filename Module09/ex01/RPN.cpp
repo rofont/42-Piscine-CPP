@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 21:40:08 by romain            #+#    #+#             */
-/*   Updated: 2024/02/04 20:14:21 by romain           ###   ########.fr       */
+/*   Updated: 2024/02/07 19:07:25 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,11 @@ RPN::RPN( std::string input ) : _input( input ) {
 }
 
 // METHODE --------------------------------------------------------------------
-/**
- * Print the string passed as parameter
-*/
+
 void	RPN::printInput( void ) {
 	std::cout << "input = " << this->_input << std::endl;
 }
 
-/**
- * Pars the string
-*/
 void	RPN::parsInput( void ) {
 	int i = 0;
 	size_t  found = _input.find_first_not_of( "01234456789 +-/*" );
@@ -58,10 +53,6 @@ void	RPN::parsInput( void ) {
 	}
 }
 
-/**
- * check if it's an operant
- * @param c a reference to a char operator
-*/
 void	RPN::doOper( char const &c ) {
 
 	if ( this->_stock.size() < 2 )
@@ -86,9 +77,6 @@ void	RPN::doOper( char const &c ) {
 	_stock.push(res);
 }
 
-/**
- * fills the stack and executes the operation.
-*/
 void	RPN::fillStack( void ) {
 	std::string temp = this->_input;
 	int i = -1;
@@ -103,7 +91,10 @@ void	RPN::fillStack( void ) {
 				// std::cout << "top of stack = " << this->_stock.top() << std::endl;
 			}
 		}
-		std::cout << _stock.top() << std::endl;
+		if (_stock.size() != 1)
+			throw std::runtime_error( "Syntax of the operation is wrong" );
+		else
+			std::cout << _stock.top() << std::endl;
 		// std::cout << "RPN = " << _stock.top() << std::endl;
 	}
 	catch ( std::exception &e ) {

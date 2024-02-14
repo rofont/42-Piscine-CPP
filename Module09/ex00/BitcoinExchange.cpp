@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:52:34 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/26 21:48:48 by romain           ###   ########.fr       */
+/*   Updated: 2024/02/07 19:03:28 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ BitcoinExchange &BitcoinExchange::operator=( BitcoinExchange const &src ) {
 
 // METHODE --------------------------------------------------------------------
 
-/**
- * fonction that prints dataBase
-*/
 void	BitcoinExchange::printDatabase( void ) {
 	try {
 		std::map<int, float>::iterator it;
@@ -44,10 +41,6 @@ void	BitcoinExchange::printDatabase( void ) {
 
 // MANAGE CSV-------------------------------------------------------------------
 
-/**
- * function pars CSV file
- * @param nameCSV the name of CSV file
-*/
 void	BitcoinExchange::manageCSV( std::string nameCSV ) {
 	std::ifstream csv( nameCSV );
 
@@ -71,10 +64,6 @@ void	BitcoinExchange::manageCSV( std::string nameCSV ) {
 	}
 }
 
-/**
- * check if CSV header is correct
- * @param csv is the ifstream for CSV file
-*/
 void	BitcoinExchange::checkHeaderCSV( std::ifstream &csv ) {
 	std::string head;
 
@@ -83,11 +72,6 @@ void	BitcoinExchange::checkHeaderCSV( std::ifstream &csv ) {
 		throw std::runtime_error( "Format the CSV file is not correct (Header)" );
 }
 
-/**
- * function check that the line has the correct format
- * @param line the line must be checked
- * @param i is the line number
-*/
 void	BitcoinExchange::checkLineCSV( std::string line, int i ) {
 	std::regex pattern( "^(\\d{4}-\\d{2}-\\d{2}),(\\d*(\\.\\d+)?\\d*)$" );
 
@@ -102,25 +86,13 @@ void	BitcoinExchange::checkLineCSV( std::string line, int i ) {
 	}
 }
 
-//CHECK DATE ------------------------------------------------------------------
 
-/**
- * function checks if the date is bisextile.
- * @param year year at test
- * @param return true if the year is bisextile
-*/
 bool	BitcoinExchange::isBisextile( int year ) {
 	if ( (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0) )
 		return true;
 	return false;
 }
 
-/**
- * function checks date is right.
- * @param date current date
- * @param line line where is the date
- * @param return true if the date is valable
-*/
 bool	BitcoinExchange::checkDate( std::string date ) {
 	char under;
 	int year, month, day;
@@ -142,20 +114,10 @@ bool	BitcoinExchange::checkDate( std::string date ) {
 
 // FILL MAP -------------------------------------------------------------------
 
-/**
- * fonction that inserts in database a element
- * @param date key
- * @param change value
-*/
 void	BitcoinExchange::insertElementInDataBase ( int date, float change ) {
 	this->_dataBase[ date ] = change;
 }
 
-/**
- * Change Date to int
- * @param date the the date we want to change
- * @param return the date in int
-*/
 int	BitcoinExchange::changeDateToInt( std::string date ) {
 	int key;
 	try {
@@ -168,10 +130,6 @@ int	BitcoinExchange::changeDateToInt( std::string date ) {
 	}
 }
 
-/**
- * fill one line in the contener map
- * @param line the line we want to fill in the map
-*/
 void	BitcoinExchange::fillMap( std::string &line ) {
 	std::string key, value;
 	std::istringstream iss( line );
@@ -184,10 +142,6 @@ void	BitcoinExchange::fillMap( std::string &line ) {
 
 // CHECK INPUT FILE -----------------------------------------------------------
 
-/**
- * pars the line to receve
- * @param line line that has to pars
-*/
 void	BitcoinExchange::manageInput( std::string input ) {
 	std::regex pattern( "^(\\d{4}-\\d{2}-\\d{2}) \\| (\\-*\\+*\\d*(\\.\\d+)?\\d*)$" );
 	std::string line;
@@ -212,8 +166,6 @@ void	BitcoinExchange::manageInput( std::string input ) {
 	}
 }
 
-
-
 void	BitcoinExchange::checkLineInput( std::string line ) {
 	std::string temp = line;
 	temp.erase( std::remove(temp.begin(), temp.end(), ' '), temp.end() );
@@ -237,13 +189,6 @@ void	BitcoinExchange::checkLineInput( std::string line ) {
 		std::cout << date << " => " << value << " = " << this->convert(nb, val) << std::endl;
 }
 
-
-/**
- * Search date and value in the map
- * @param date the key of map
- * @param value the value of the map
- * @param return the value to which the exchange rate has been applied
-*/
 float	BitcoinExchange::convert( int date, float value ) {
 	float res = 0.0f;
 	std::map<int, float>::iterator it;
@@ -271,10 +216,6 @@ float	BitcoinExchange::convert( int date, float value ) {
 	return res;
 }
 
-/**
- * check if input header is correct
- * @param input is the ifstream for input file
-*/
 void	BitcoinExchange::checkHeaderInput( std::ifstream &input ) {
 	std::string head;
 	std::getline( input, head );

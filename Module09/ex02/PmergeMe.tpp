@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:51:54 by rofontai          #+#    #+#             */
-/*   Updated: 2024/02/03 15:58:21 by romain           ###   ########.fr       */
+/*   Updated: 2024/02/13 21:20:23 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,48 @@ PmergeMe<Cont, ContPair> &PmergeMe<Cont, ContPair>::operator=( PmergeMe<Cont, Co
 	return *this;
 }
 
+// ALGO FORD-JOHNSON-----------------------------------------------------------
+
+template <typename Cont, typename ContPair>
+void	PmergeMe<Cont, ContPair>::fordJohnsonAlgorithm( int ac, char **av, std::string type ) {
+
+	struct timespec start, end;
+	clock_gettime( CLOCK_REALTIME, &start );
+
+	this->parsInput( ac, av );
+	if ( type == "vector" )
+		this->printInputBefore( ac, av );
+	this->fillVectorPair( ac, av );
+	this->sortPairElement();
+	this->createMainAndPendVector();
+	this->insertInMain();
+	if ( type == "vector" )
+		this->printInputAfter();
+
+	clock_gettime( CLOCK_REALTIME, &end );
+	double duration = ( end.tv_sec - start.tv_sec ) * 1000.0 + ( end.tv_nsec - start.tv_nsec ) / 1000000.0;
+	std::cout << std::fixed << std::setprecision(3);
+	if ( type == "deque" )
+		std::cout << "Time to process a range of " CYA<< ac - 1 <<WHT " elements with std::" MAG<< type <<WHT "  : " GRE<< duration <<WHT "ms" << std ::endl;
+	else
+		std::cout << "Time to process a range of " CYA<< ac - 1 <<WHT " elements with std::" MAG<< type <<WHT " : " GRE<< duration <<WHT "ms" << std ::endl;
+}
+
 // PRINTS ---------------------------------------------------------------------
-/**
- * Print input before use the Ford_Johnson Algorithm.
-*/
+
 template <typename Cont, typename ContPair>
 void	PmergeMe<Cont, ContPair>::printInputBefore( int ac, char **av ) {
 	std::cout <<WHT "Before: ";
 	if ( ac > 12 )
-		ac = 12;
-	for ( int i = 1; i < ac - 1; i++ ) {
+		ac = 11;
+	for ( int i = 1; i < ac; i++ ) {
 		std::cout << ' ' << av[i];
 	}
-	if ( ac >= 12 )
+	if ( ac >= 11 )
 		std::cout << " [...]";
 	std::cout << std::endl;
 }
 
-/**
- * Print a simple vector
-*/
 template <typename Cont, typename ContPair>
 void	PmergeMe<Cont, ContPair>::printVector( Cont vector ) const {
 	for( size_t i = 0; i < vector.size(); i++ )
@@ -60,9 +82,6 @@ void	PmergeMe<Cont, ContPair>::printVector( Cont vector ) const {
 		std::cout << std::endl;
 }
 
-/**
- * Print a vector with pair
-*/
 template <typename Cont, typename ContPair>
 void	PmergeMe<Cont, ContPair>::printVectorPair( void ) const {
 	for( size_t i = 0; i < this->_pair.size(); i++ )
@@ -70,9 +89,6 @@ void	PmergeMe<Cont, ContPair>::printVectorPair( void ) const {
 		"first = "<< this->_pair[i].first << ", second = " << this->_pair[i].second << std::endl;
 }
 
-/**
- * Print input after use the Ford_Johnson Algorithm.
-*/
 template <typename Cont, typename ContPair>
 void	PmergeMe<Cont, ContPair>::printInputAfter( void ) {
 	std::cout << "After:  ";
@@ -87,9 +103,6 @@ void	PmergeMe<Cont, ContPair>::printInputAfter( void ) {
 	std::cout << std::endl;
 }
 
-/**
- * Check if this lsit is sorted or not
-*/
 template <typename Cont, typename ContPair>
 void	PmergeMe<Cont, ContPair>::sortedOrNot( std::string type ) {
 	for ( size_t i = 1; i < this->_main.size(); i++ ) {
@@ -103,12 +116,6 @@ void	PmergeMe<Cont, ContPair>::sortedOrNot( std::string type ) {
 
 // PARS INPUT -----------------------------------------------------------------
 
-/**
- * Pars Input. If not enough parameters, not a digit, out of range or a duplicate number
- * throw an exception
- * @param ac number of arguments
- * @param av list of arguments
-*/
 template <typename Cont, typename ContPair>
 void	PmergeMe<Cont, ContPair>::parsInput( int ac, char **av ) {
 	long nb1, nb2;
@@ -134,11 +141,6 @@ void	PmergeMe<Cont, ContPair>::parsInput( int ac, char **av ) {
 
 // FORD_JOHNSON ALGO ----------------------------------------------------------
 
-/**
- * Fill the vector of int pairs and sort the pairs.
- * @param ac number of arguments
- * @param av list of arguments
-*/
 template <typename Cont, typename ContPair>
 void	PmergeMe<Cont, ContPair>::fillVectorPair( int ac, char **av ) {
 	int nb1, nb2;
@@ -155,32 +157,66 @@ void	PmergeMe<Cont, ContPair>::fillVectorPair( int ac, char **av ) {
 	}
 }
 
-/**
- * Function static that compare the second element of pairs. return true if pair1 is shorter than pair2
- * @param pair1 const value reference of one pair
- * @param pair2 const value reference of second pair
- * @param return true if pair1 is shorter than pair2
- * @param
-*/
-static bool compareSecondElement( IntPair const &pair1, IntPair const &pair2 ) {
-	if ( pair1.second == EMPTY || pair2.second == EMPTY )
-		return false;
-	if ( pair1.second < pair2.second )
-		return true;
-	return false;
-}
-
-/**
- * Sort the vector with his second element of pairs
-*/
 template <typename Cont, typename ContPair>
-void	PmergeMe<Cont, ContPair>::sortPairElement( void ) {
-	std::sort( this->_pair.begin(), this->_pair.end(), compareSecondElement );
+void	PmergeMe<Cont, ContPair>::merge(ContPair& pair, int left, int mid, int right) {
+	int n1 = mid - left + 1;
+	int n2 = right - mid;
+	ContPair L(n1), R(n2);
+
+	for (int i = 0; i < n1; i++)
+		L[i] = pair[left + i];
+	for (int j = 0; j < n2; j++)
+		R[j] = pair[mid + 1 + j];
+
+	int i = 0, j = 0, k = left;
+	while (i < n1 && j < n2) {
+		if (L[i].second != -1 && R[j].second != -1) {
+			if (L[i].second <= R[j].second) {
+				pair[k] = L[i];
+				i++;
+			} else {
+				pair[k] = R[j];
+				j++;
+			}
+		} else if (L[i].second != -1) {
+			pair[k] = L[i];
+			i++;
+		} else if (R[j].second != -1) {
+			pair[k] = R[j];
+			j++;
+		}
+		k++;
+        }
+	while (i < n1) {
+		pair[k] = L[i];
+		i++;
+		k++;
+	}
+
+	while (j < n2) {
+		pair[k] = R[j];
+		j++;
+		k++;
+	}
 }
 
-/**
- * Create vectorMain and vectorPend with the second and the fisrt element of the vectorPair
-*/
+template <typename Cont, typename ContPair>
+void	PmergeMe<Cont, ContPair>::mergeSort(ContPair& pair, int left, int right) {
+	if (left < right) {
+		int mid = left + (right - left) / 2;
+
+		this->mergeSort(pair, left, mid);
+		this->mergeSort(pair, mid + 1, right);
+
+		this->merge(pair, left, mid, right);
+	}
+}
+
+template <typename Cont, typename ContPair>
+void PmergeMe<Cont, ContPair>::sortPairElement( void ) {
+	this->mergeSort(_pair, 0, _pair.size() - 1);
+}
+
 template <typename Cont, typename ContPair>
 void	PmergeMe<Cont, ContPair>::createMainAndPendVector( void ) {
 	for ( size_t i = 0; i < _pair.size(); i++) {
@@ -190,7 +226,6 @@ void	PmergeMe<Cont, ContPair>::createMainAndPendVector( void ) {
 	}
 	this->_main.insert( this->_main.begin(), this->_pend[0] );
 }
-
 
 // JACLOBSTHAL ---------------------------- ----------------------------------------------
 
@@ -219,11 +254,7 @@ Cont	PmergeMe<Cont, ContPair>::genreteJacobSVector( void ){
 }
 
 // ---------------------------------------------------------------------------------------------------
-/**
- * Finds where to insert a number in the vectorMain
- * @param nbInsert the number to be inserted
- * @param return the position
-*/
+
 template <typename Cont, typename ContPair>
 int	PmergeMe<Cont, ContPair>::binarySearch( int nbInsert ) {
 	int start( 0 ), end( this->_main.size() );
@@ -238,9 +269,6 @@ int	PmergeMe<Cont, ContPair>::binarySearch( int nbInsert ) {
 	return start;
 }
 
-/**
- * Insert the number of the vectorPend in the vectorMain
-*/
 template <typename Cont, typename ContPair>
 void	PmergeMe<Cont, ContPair>::insertInMain( void ) {
 	typename Cont::iterator cur;
@@ -272,44 +300,6 @@ void	PmergeMe<Cont, ContPair>::insertInMain( void ) {
 	}
 }
 
-
-/**
- * Ford-Johnson Algorithm
- * @param ac number of arguments
- * @param av list of arguments
- * @param type type of container
-*/
-template <typename Cont, typename ContPair>
-void	PmergeMe<Cont, ContPair>::fordJohnsonAlgorithm( int ac, char **av, std::string type ) {
-
-	struct timespec start, end;
-	clock_gettime( CLOCK_REALTIME, &start );
-
-	this->parsInput( ac, av );
-	if ( type == "vector" )
-		this->printInputBefore( ac, av );
-	this->fillVectorPair( ac, av );
-	this->sortPairElement();
-	this->createMainAndPendVector();
-	this->insertInMain();
-	if ( type == "vector" )
-		this->printInputAfter();
-
-	clock_gettime( CLOCK_REALTIME, &end );
-	double duration = ( end.tv_sec - start.tv_sec ) * 1000.0 + ( end.tv_nsec - start.tv_nsec ) / 1000000.0;
-	std::cout << std::fixed << std::setprecision(3);
-	if ( type == "deque" )
-		std::cout << "Time to process a range of " CYA<< ac - 1 <<WHT " elements with std::" MAG<< type <<WHT "  : " GRE<< duration <<WHT "ms" << std ::endl;
-	else
-		std::cout << "Time to process a range of " CYA<< ac - 1 <<WHT " elements with std::" MAG<< type <<WHT " : " GRE<< duration <<WHT "ms" << std ::endl;
-}
-
-/**
- * Manage Input. Parses, Sorts and Orders the input
- * @param ac number of arguments
- * @param av list of arguments
- * @param type type of container
-*/
 template <typename Cont, typename ContPair>
 void	PmergeMe<Cont, ContPair>::manageInputDebug( int ac, char **av, std::string type ) {
 	struct timespec start, end;

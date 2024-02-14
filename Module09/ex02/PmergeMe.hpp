@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 09:49:14 by rofontai          #+#    #+#             */
-/*   Updated: 2024/02/03 16:02:34 by romain           ###   ########.fr       */
+/*   Updated: 2024/02/13 21:17:09 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,12 @@ class PmergeMe {
 		void	printInputAfter( void );
 		void	sortedOrNot( std::string type );
 
+
+
 		void	parsInput( int ac, char **av );
 		void	fillVectorPair( int ac, char **av );
+		void 	mergeSort(ContPair& pair, int left, int right);
+		void	merge(ContPair& pair, int left, int mid, int right);
 		void	sortPairElement( void );
 		void	createMainAndPendVector( void );
 		int		jacobsthalList( int const &nbSearch );

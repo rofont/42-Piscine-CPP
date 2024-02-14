@@ -6,7 +6,7 @@
 /*   By: romain <romain@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:52:36 by rofontai          #+#    #+#             */
-/*   Updated: 2024/01/26 21:38:36 by romain           ###   ########.fr       */
+/*   Updated: 2024/02/07 19:03:39 by romain           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define CSV "data.csv"
 # define DATEMIN 20090102
 # define DATEMAX 20240601
-
 
 # include <algorithm>
 # include <iostream>
@@ -68,9 +67,5 @@ class BitcoinExchange {
 		float	convert( int date, float value );
 		void	checkHeaderInput( std::ifstream &input );
 };
-
-
-
-
 
 #endif
